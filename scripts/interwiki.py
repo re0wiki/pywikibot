@@ -1256,8 +1256,7 @@ class Subject(interwiki_graph.Subject):
 
             elif self.conf.autonomous and duplicate and not skip:
                 pywikibot.output('Stopping work on {} because duplicate pages'
-                                 ' {} and {} are found'
-                                 .format(self.originP, duplicate, page))
+                                 ' {} and {} are found'.format(self.origin, duplicate, page))
                 self.makeForcedStop(counter)
                 try:
                     with codecs.open(
@@ -1364,7 +1363,7 @@ class Subject(interwiki_graph.Subject):
                 if site != self.origin.site:
                     new[site].append(page)
                 elif page != self.origin:
-                    self.problem('Found link to ' + page)
+                    self.problem('Found link to ' + str(page))
                     self.whereReport(page)
                     errorCount += 1
 

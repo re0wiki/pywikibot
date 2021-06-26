@@ -1,0 +1,7 @@
+version: "1"
+rules: # Array of rules
+  - base: main # Required. Target branch
+    upstream: wikimedia:master # Required. Must be in the same fork network.
+    mergeMethod: merge # Optional, one of [none, merge, squash, rebase, hardreset], Default: none.
+    conflictReviewers: # Optional, on merge conflict assign a reviewer
+      - CCXXXI

@@ -165,27 +165,28 @@ def main(*args) -> None:
         text = page.get(get_redirect=True)
         source_link = page.title(as_link=True, insite=targetpage.site)
 
-        note = twtranslate(
-            tosite, 'transferbot-target',
-            {'source': source_link,
-             'history': edithistpage.title(as_link=True,
-                                           insite=targetpage.site)}
-        )
-        text += '<noinclude>\n\n<small>{}</small></noinclude>'.format(note)
+        # note = twtranslate(
+        #     tosite, 'transferbot-target',
+        #     {'source': source_link,
+        #      'history': edithistpage.title(as_link=True,
+        #                                    insite=targetpage.site)}
+        # )
+        # text += '<noinclude>\n\n<small>{}</small></noinclude>'.format(note)
 
-        pywikibot.log('Getting edit history.')
-        historytable = page.getVersionHistoryTable()
+        text = '{{To do|待整理格式。}}' + text + f'\n{source_link}'
 
-        pywikibot.log('Putting edit history.')
-        summary = twtranslate(tosite, 'transferbot-summary',
-                              {'source': source_link})
-        edithistpage.put(historytable, summary=summary)
+        # pywikibot.log('Getting edit history.')
+        # historytable = page.getVersionHistoryTable()
+        #
+        # pywikibot.log('Putting edit history.')
+        summary = twtranslate(tosite, 'transferbot-summary', {'source': source_link})
+        # edithistpage.put(historytable, summary=summary)
 
         pywikibot.log('Putting page text.')
-        edithist_link = ' ([[{target}/edithistory|history]])'.format(
-            target=targetpage.title()
-            if not targetpage.namespace().subpages else '')
-        summary += edithist_link
+        # edithist_link = ' ([[{target}/edithistory|history]])'.format(
+        #     target=targetpage.title()
+        #     if not targetpage.namespace().subpages else '')
+        # summary += edithist_link
         targetpage.put(text, summary=summary)
 
 

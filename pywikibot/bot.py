@@ -1263,6 +1263,7 @@ class BaseBot(OptionHandler):
                 stdout(msg)
 
     def user_confirm(self, question):
+        return True
         """Obtain user response if bot option 'always' not enabled."""
         if self.opt.always:
             return True
