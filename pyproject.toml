@@ -1,2 +1,2 @@
 [tool.black]
-force-exclude = '.'
+include = 're0.*\.pyi?$'
