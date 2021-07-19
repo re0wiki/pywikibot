@@ -198,8 +198,8 @@ fixes = {
             # external link and description separated by a dash.
             # ATTENTION: while this is a mistake in most cases, there are some
             # valid URLs that contain dashes!
-            (r'\[(?P<url>https?://[^\|\]\s]+?) *\| *(?P<label>[^\|\]]+?)\]',
-             r'[\g<url> \g<label>]'),
+            # (r'\[(?P<url>https?://[^\|\]\s]+?) *\| *(?P<label>[^\|\]]+?)\]',
+            #  r'[\g<url> \g<label>]'),
             # wiki link closed by single bracket.
             # ATTENTION: There are some false positives, for example
             # Brainfuck code examples or MS-DOS parameter instructions.
