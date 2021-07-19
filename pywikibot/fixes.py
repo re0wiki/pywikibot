@@ -43,6 +43,7 @@ fixes = {
     'HTML': {
         'regex': True,
         'msg': 'pywikibot-fixes-html',
+        "generator": "-start::! -start:project:! -start:template:! -start:category:! -start:file:!",
         'replacements': [
             # Everything case-insensitive (?i)
             # Keep in mind that MediaWiki automatically converts <br> to <br />
@@ -184,6 +185,7 @@ fixes = {
     'syntax': {
         'regex': True,
         'msg': 'pywikibot-fixes-syntax',
+        "generator": "-start::! -start:project:! -start:template:! -start:category:! -start:file:!",
         'replacements': [
             # external link in double brackets
             (r'\[\[(?P<url>https?://[^\]]+?)\]\]',   r'[\g<url>]'),
@@ -581,6 +583,7 @@ fixes = {
             'en': 'Robot: Fixing special page capitalisation',
             'fa': 'ربات: تصحیح بزرگی و کوچکی حروف صفحه‌های ویژه',
         },
+        "generator": "-start::! -start:project:! -start:template:! -start:category:! -start:file:!",
         'replacements': [
             ('Special:Allpages',        'Special:AllPages'),
             ('Special:Blockip',         'Special:BlockIP'),
