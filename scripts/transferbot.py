@@ -173,7 +173,8 @@ def main(*args) -> None:
         # )
         # text += '<noinclude>\n\n<small>{}</small></noinclude>'.format(note)
 
-        text = '{{To do|待整理格式。}}' + text + f'\n{source_link}'
+        if page.namespace().id not in (8, 828):
+            text += f"\n{source_link}"
 
         # pywikibot.log('Getting edit history.')
         # historytable = page.getVersionHistoryTable()
