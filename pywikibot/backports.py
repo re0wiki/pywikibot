@@ -63,10 +63,10 @@ else:
 
 if PYTHON_VERSION < (3, 9):
     from typing import (
-        Callable,
         Dict,
         FrozenSet,
         Iterable,
+        Iterator,
         List,
         Mapping,
         Match,
@@ -76,13 +76,19 @@ if PYTHON_VERSION < (3, 9):
         Tuple,
     )
 else:
-    from collections.abc import Callable, Iterable, Mapping, Sequence
+    from collections.abc import Iterable, Iterator, Mapping, Sequence
     from re import Match, Pattern
     Dict = dict  # type: ignore[misc]
     FrozenSet = frozenset  # type: ignore[misc]
     List = list  # type: ignore[misc]
     Set = set  # type: ignore[misc]
     Tuple = tuple  # type: ignore[assignment]
+
+
+if PYTHON_VERSION < (3, 9, 2):
+    from typing import Callable
+else:
+    from collections.abc import Callable
 
 
 # PEP 616 string methods
