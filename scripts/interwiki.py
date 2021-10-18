@@ -2408,7 +2408,6 @@ def main(*args: str) -> None:
                 namespaces.append(int(arg[11:]))
             except ValueError:
                 namespaces.append(arg[11:])
-        # deprecated for consistency with other scripts
         elif arg.startswith('-number:'):
             number = int(arg[8:])
         elif arg.startswith('-until:'):
