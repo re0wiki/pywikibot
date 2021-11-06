@@ -62,7 +62,7 @@ Example
 # Distributed under the terms of the MIT license.
 #
 import codecs
-import re
+import regex as re
 
 from typing import Union
 

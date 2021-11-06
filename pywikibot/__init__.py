@@ -7,7 +7,7 @@
 import atexit
 import datetime
 import math
-import re
+import regex as re
 import sys
 import threading
 import time

@@ -4,7 +4,7 @@
 #
 # Distributed under the terms of the MIT license.
 #
-import re
+import regex as re
 import unittest
 
 import generate_user_files as guf

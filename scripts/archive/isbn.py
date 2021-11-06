@@ -38,7 +38,7 @@ Furthermore, the following command line parameters are supported:
 #
 # Distributed under the terms of the MIT license.
 #
-import re
+import regex as re
 from contextlib import suppress
 from functools import partial
 

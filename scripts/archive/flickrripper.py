@@ -25,7 +25,7 @@ The following parameters are supported:
 import base64
 import hashlib
 import io
-import re
+import regex as re
 from contextlib import suppress
 from urllib.parse import urlencode
 

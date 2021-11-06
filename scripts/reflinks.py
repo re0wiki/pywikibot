@@ -50,7 +50,7 @@ import codecs
 import http.client as httplib
 import itertools
 import os
-import re
+import regex as re
 import socket
 import subprocess
 import tempfile

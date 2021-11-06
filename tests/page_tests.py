@@ -5,7 +5,7 @@
 # Distributed under the terms of the MIT license.
 #
 import pickle
-import re
+import regex as re
 from contextlib import suppress
 
 import pywikibot

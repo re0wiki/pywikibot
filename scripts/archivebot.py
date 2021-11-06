@@ -96,7 +96,7 @@ import datetime
 import locale
 import math
 import os
-import re
+import regex as re
 import time
 import types
 from collections import OrderedDict, defaultdict

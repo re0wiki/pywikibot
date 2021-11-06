@@ -5,7 +5,7 @@
 # Distributed under the terms of the MIT license.
 #
 import functools
-import re
+import regex as re
 import threading
 from warnings import warn
 

@@ -28,7 +28,7 @@ If required you can use your own Session object passing it to the
 #
 import atexit
 import codecs
-import re
+import regex as re
 import sys
 from contextlib import suppress
 from http import HTTPStatus, cookiejar

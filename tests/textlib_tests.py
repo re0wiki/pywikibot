@@ -7,7 +7,7 @@
 import codecs
 import functools
 import os
-import re
+import regex as re
 import unittest
 from collections import OrderedDict
 from contextlib import suppress

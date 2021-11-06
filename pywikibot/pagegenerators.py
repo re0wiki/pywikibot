@@ -23,7 +23,7 @@ import datetime
 import io
 import itertools
 import json
-import re
+import regex as re
 import sys
 from collections import abc, namedtuple
 from datetime import timedelta

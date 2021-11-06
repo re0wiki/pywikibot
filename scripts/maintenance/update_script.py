@@ -33,7 +33,7 @@ to show warnings about deprecated methods:
 #
 import codecs
 import os
-import re
+import regex as re
 import sys
 
 import pywikibot

@@ -17,7 +17,7 @@ Can be used with:
 #
 # Distributed under the terms of the MIT license.
 #
-import re
+import regex as re
 from contextlib import suppress
 
 import pywikibot

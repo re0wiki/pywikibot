@@ -35,7 +35,7 @@ Furthermore, the following command line parameters are supported:
 #
 # Distributed under the terms of the MIT license.
 #
-import re
+import regex as re
 
 import pywikibot
 from pywikibot import i18n, pagegenerators

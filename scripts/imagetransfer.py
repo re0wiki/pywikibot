@@ -37,7 +37,7 @@ used on a page reachable via interwiki links.
 #
 # Distributed under the terms of the MIT license.
 #
-import re
+import regex as re
 import sys
 
 import pywikibot

@@ -6,7 +6,7 @@
 #
 import getpass
 import logging
-import re
+import regex as re
 import sys
 import threading
 from typing import Any, Optional, Union

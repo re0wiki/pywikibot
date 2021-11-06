@@ -7,7 +7,7 @@
 #
 import codecs
 import os
-import re
+import regex as re
 import sys
 from itertools import chain, combinations
 from string import ascii_letters

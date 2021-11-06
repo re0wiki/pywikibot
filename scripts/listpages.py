@@ -92,7 +92,7 @@ page object:
 # Distributed under the terms of the MIT license.
 #
 import os
-import re
+import regex as re
 
 import pywikibot
 from pywikibot import config, i18n

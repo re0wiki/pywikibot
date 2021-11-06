@@ -48,7 +48,7 @@ Please check every article you change.
 #
 # Automatically ported from compat branch by compat2core.py script
 #
-import re
+import regex as re
 
 import pywikibot
 from pywikibot import config, i18n, pagegenerators, xmlreader

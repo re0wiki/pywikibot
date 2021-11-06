@@ -29,7 +29,7 @@ and pagegenerator can be one of these:
 # Ported by Geoffrey "GEOFBOT" Mon for Google Code-In 2013
 # User:Sn1per
 #
-import re
+import regex as re
 
 import pywikibot
 from pywikibot import Bot, i18n, pagegenerators, textlib

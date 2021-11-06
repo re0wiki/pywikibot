@@ -111,7 +111,7 @@ Loads all wiki pages where dead links were found during a prior run:
 import codecs
 import datetime
 import pickle
-import re
+import regex as re
 import threading
 import time
 from contextlib import suppress

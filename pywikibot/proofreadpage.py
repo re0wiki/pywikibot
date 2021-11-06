@@ -27,7 +27,7 @@ OCR support of page scans via:
 # Distributed under the terms of the MIT license.
 #
 import json
-import re
+import regex as re
 import time
 from functools import partial
 from http import HTTPStatus

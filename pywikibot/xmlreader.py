@@ -12,7 +12,7 @@ XmlEntry objects which can be used by other bots.
 #
 # Distributed under the terms of the MIT license.
 #
-import re
+import regex as re
 import threading
 import xml.sax
 from xml.etree.ElementTree import iterparse

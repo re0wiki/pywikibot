@@ -61,7 +61,7 @@ By default the bot works on your home wiki (set in user-config)
 # Distributed under the terms of the MIT license.
 #
 import codecs
-import re
+import regex as re
 import threading
 import webbrowser
 from os import path

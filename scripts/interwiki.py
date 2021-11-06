@@ -334,7 +334,7 @@ that you have to break it off, use "-continue" next time.
 #
 import codecs
 import os
-import re
+import regex as re
 import socket
 import sys
 from collections import Counter, defaultdict

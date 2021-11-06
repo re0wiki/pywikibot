@@ -14,7 +14,7 @@ linktrails dict.
 #
 
 import codecs
-import re
+import regex as re
 from contextlib import closing
 from os.path import join
 

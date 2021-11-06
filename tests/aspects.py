@@ -12,7 +12,7 @@ such as API result caching and excessive test durations.
 import inspect
 import itertools
 import os
-import re
+import regex as re
 import sys
 import time
 import unittest

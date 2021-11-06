@@ -7,7 +7,7 @@
 import datetime
 import mimetypes
 import os
-import re
+import regex as re
 import time
 import typing
 from collections import OrderedDict, defaultdict, namedtuple

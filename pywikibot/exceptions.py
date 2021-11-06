@@ -166,7 +166,7 @@ UserWarning: warnings targeted at users
 #
 # Distributed under the terms of the MIT license.
 #
-import re
+import regex as re
 from typing import Any, Optional, Union
 
 import pywikibot

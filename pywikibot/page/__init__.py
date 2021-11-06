@@ -18,7 +18,7 @@ This module also includes objects:
 import json as jsonlib
 import logging
 import os.path
-import re
+import regex as re
 import unicodedata
 from collections import Counter, OrderedDict, defaultdict
 from contextlib import suppress

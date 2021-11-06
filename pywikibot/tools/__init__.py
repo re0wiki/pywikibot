@@ -11,7 +11,7 @@ import ipaddress
 import itertools
 import os
 import queue
-import re
+import regex as re
 import stat
 import subprocess
 import sys
