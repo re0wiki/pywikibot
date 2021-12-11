@@ -1781,7 +1781,7 @@ class ConfigParserBot(BaseBot):
         # edit summary for the bot.
         summary = Bot: Aggiungo template Categorizzare
 
-        [shell] ; Shell options
+        [commonscat] ; commonscat options
         always: true
 
     The option values are interpreted in this order:
