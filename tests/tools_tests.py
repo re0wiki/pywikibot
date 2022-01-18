@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 """Test tools package alone which don't fit into other tests."""
 #
 # (C) Pywikibot team, 2015-2022
@@ -9,6 +9,7 @@ import os.path
 import subprocess
 import tempfile
 import unittest
+from unittest import mock
 
 from collections import Counter, OrderedDict
 from collections.abc import Mapping
@@ -23,7 +24,7 @@ from pywikibot.tools import (
     is_ip_address,
     suppress_warnings,
 )
-from tests import join_xml_data_path, mock
+from tests import join_xml_data_path
 from tests.aspects import TestCase, require_modules
 
 

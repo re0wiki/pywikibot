@@ -1,12 +1,14 @@
+#!/usr/bin/python3
 """Tests for the page module."""
 #
-# (C) Pywikibot team, 2008-2021
+# (C) Pywikibot team, 2008-2022
 #
 # Distributed under the terms of the MIT license.
 #
 import pickle
 import regex as re
 from contextlib import suppress
+from unittest import mock
 
 import pywikibot
 import pywikibot.page
@@ -20,7 +22,7 @@ from pywikibot.exceptions import (
     UnknownExtensionError,
 )
 from pywikibot.tools import suppress_warnings
-from tests import WARN_SITE_CODE, mock
+from tests import WARN_SITE_CODE
 from tests.aspects import (
     DefaultDrySiteTestCase,
     DefaultSiteTestCase,

@@ -1,7 +1,6 @@
-#!/usr/bin/python
 """Library to log the bot in to a wiki account."""
 #
-# (C) Pywikibot team, 2003-2021
+# (C) Pywikibot team, 2003-2022
 #
 # Distributed under the terms of the MIT license.
 #
@@ -28,10 +27,6 @@ try:
     import mwoauth
 except ImportError as e:
     mwoauth = e
-
-# TODO: replace these after T286867
-
-OPT_SITE_TYPE = Any  # Optional['pywikibot.site.BaseSite']
 
 
 class _PasswordFileWarning(UserWarning):
@@ -87,7 +82,7 @@ class LoginManager:
     """Site login manager."""
 
     def __init__(self, password: Optional[str] = None,
-                 site: OPT_SITE_TYPE = None,
+                 site: Optional['pywikibot.site.BaseSite'] = None,
                  user: Optional[str] = None) -> None:
         """
         Initializer.
@@ -365,7 +360,7 @@ class OauthLoginManager(LoginManager):
     # authentication process
 
     def __init__(self, password: Optional[str] = None,
-                 site: OPT_SITE_TYPE = None,
+                 site: Optional['pywikibot.site.BaseSite'] = None,
                  user: Optional[str] = None) -> None:
         """
         Initializer.

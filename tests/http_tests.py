@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 """Tests for http module."""
 #
 # (C) Pywikibot team, 2014-2022
@@ -9,6 +10,7 @@ import regex as re
 import warnings
 from contextlib import suppress
 from http import HTTPStatus
+from unittest.mock import patch
 
 import requests
 
@@ -17,7 +19,7 @@ from pywikibot import config
 from pywikibot.comms import http
 from pywikibot.exceptions import FatalServerError, Server504Error
 from pywikibot.tools import PYTHON_VERSION, suppress_warnings
-from tests import join_images_path, patch
+from tests import join_images_path
 from tests.aspects import HttpbinTestCase, TestCase, require_modules, unittest
 
 

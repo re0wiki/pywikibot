@@ -1,6 +1,7 @@
+#!/usr/bin/python3
 """Tests for the Wikidata parts of the page module."""
 #
-# (C) Pywikibot team, 2008-2021
+# (C) Pywikibot team, 2008-2022
 #
 # Distributed under the terms of the MIT license.
 #
@@ -9,6 +10,7 @@ import json
 import unittest
 from contextlib import suppress
 from decimal import Decimal
+from unittest import mock
 
 import pywikibot
 from pywikibot import pagegenerators
@@ -23,7 +25,8 @@ from pywikibot.exceptions import (
 from pywikibot.page import ItemPage, Page, PropertyPage, WikibasePage
 from pywikibot.site import Namespace, NamespacesDict
 from pywikibot.tools import MediaWikiVersion, suppress_warnings
-from tests import WARN_SITE_CODE, join_pages_path, mock
+
+from tests import WARN_SITE_CODE, join_pages_path
 from tests.aspects import TestCase, WikidataTestCase
 from tests.basepage import (
     BasePageLoadRevisionsCachingTestBase,
