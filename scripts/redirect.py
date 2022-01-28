@@ -78,7 +78,8 @@ import pywikibot
 import pywikibot.data
 from pywikibot import i18n, pagegenerators, xmlreader
 from pywikibot.backports import Dict, List, Set, Tuple
-from pywikibot.bot import ExistingPageBot, OptionHandler, RedirectPageBot
+from pywikibot.bot import (
+    ExistingPageBot, OptionHandler, RedirectPageBot, suggest_help)
 from pywikibot.exceptions import (
     CircularRedirectError,
     InterwikiRedirectPageError,
@@ -214,20 +215,26 @@ class RedirectGenerator(OptionHandler):
     def _next_redirect_group(self) -> Generator[List[pywikibot.Page], None,
                                                 None]:
         """Generator that yields batches of 50 redirects as a list."""
-        apiQ = []
+        chunk = []
+        chunks = 0
         for page in self.get_redirect_pages_via_api():
-            apiQ.append(str(page.pageid))
-            if len(apiQ) >= 50:
-                pywikibot.output('.', newline=False)
-                yield apiQ
-                apiQ = []
-        if apiQ:
-            yield apiQ
+            chunk.append(str(page.pageid))
+            if len(chunk) >= 50:  # T299859
+                chunks += 1
+                if not chunks % 10:
+                    pywikibot.output('.', newline=False)
+                yield chunk
+                chunk.clear()
+        if chunk:
+            yield chunk
 
     def get_redirects_via_api(self, maxlen=8) -> Generator[Tuple[
             str, Optional[int], str, Optional[str]], None, None]:
         r"""
         Return a generator that yields tuples of data about redirect Pages.
+
+        .. versionchanged:: 7.0
+           only yield tuple if type of redirect is not 1 (normal redirect)
 
         The description of returned tuple items is as follows:
 
@@ -281,7 +288,9 @@ class RedirectGenerator(OptionHandler):
                             result += 1
                             final = redirects[final]
 
-                yield (redirect, result, target, final)
+                # only yield multiple or broken redirects
+                if result != 1:
+                    yield redirect, result, target, final
 
     def retrieve_broken_redirects(self) -> Generator[
             Union[str, pywikibot.Page], None, None]:
@@ -671,6 +680,7 @@ def main(*args: str) -> None:
     # redirs)
     action = None
     source = set()
+    unknown = []
     gen_factory = pagegenerators.GeneratorFactory()
 
     local_args = pywikibot.handle_args(args)
@@ -706,17 +716,13 @@ def main(*args: str) -> None:
         elif gen_factory.handle_arg(argument):
             pass
         else:
-            pywikibot.output('Unknown argument: ' + arg)
+            unknown.append(arg)
 
-    if len(source) > 1:
-        problem = 'You can only use one of {} options.'.format(
-            ' or '.join(source))
-        pywikibot.bot.suggest_help(additional_text=problem,
-                                   missing_action=not action)
-        return
-
-    if not action:
-        pywikibot.bot.suggest_help(missing_action=True)
+    problem = 'You can only use one of {} options.'.format(
+        ' or '.join(source)) if len(source) > 1 else ''
+    if suggest_help(additional_text=problem,
+                    unknown_parameters=unknown,
+                    missing_action=not action):
         return
 
     gen = None
