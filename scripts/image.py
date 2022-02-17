@@ -48,7 +48,6 @@ import pywikibot
 from pywikibot import i18n, pagegenerators
 from pywikibot.bot import SingleSiteBot
 from pywikibot.textlib import case_escape
-
 from scripts.replace import ReplaceRobot as ReplaceBot
 
 
