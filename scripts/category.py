@@ -304,7 +304,11 @@ class CategoryDatabase:
     This prevents loading the category pages over and over again.
     """
 
-    def __init__(self, rebuild=False, filename='category.dump.bz2') -> None:
+    def __init__(
+        self,
+        rebuild=False,
+        filename: str = 'category.dump.bz2'
+    ) -> None:
         """Initializer."""
         if not os.path.isabs(filename):
             filename = config.datafilepath(filename)
@@ -1261,7 +1265,13 @@ class CategoryTreeRobot:
                      the tree to stdout.
     """
 
-    def __init__(self, cat_title, cat_db, filename=None, max_depth=10) -> None:
+    def __init__(
+        self,
+        cat_title,
+        cat_db,
+        filename=None,
+        max_depth: int = 10
+    ) -> None:
         """Initializer."""
         self.cat_title = cat_title or \
             pywikibot.input(
@@ -1278,7 +1288,7 @@ class CategoryTreeRobot:
         self.max_depth = max_depth
         self.site = pywikibot.Site()
 
-    def treeview(self, cat, current_depth=0, parent=None) -> str:
+    def treeview(self, cat, current_depth: int = 0, parent=None) -> str:
         """Return a tree view of all subcategories of cat.
 
         The multi-line string contains a tree view of all subcategories of cat,
