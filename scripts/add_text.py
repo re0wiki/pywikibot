@@ -118,7 +118,7 @@ class AddTextBot(AutomaticTWSummaryBot, ExistingPageBot, NoRedirectPageBot):
         text = re.sub(r'\r?\n', ' - ', self.opt.text[:200])
         return {'adding': text}
 
-    def setup(self):
+    def setup(self) -> None:
         """Read text to be added from file."""
         if self.opt.textfile:
             with codecs.open(self.opt.textfile, 'r',
@@ -160,7 +160,7 @@ class AddTextBot(AutomaticTWSummaryBot, ExistingPageBot, NoRedirectPageBot):
 
         return super().skip_page(page)
 
-    def treat_page(self):
+    def treat_page(self) -> None:
         """Add text to the page."""
         text = self.current_page.text
 

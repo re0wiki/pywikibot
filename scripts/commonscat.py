@@ -250,7 +250,7 @@ class CommonscatBot(ConfigParserBot, ExistingPageBot, NoRedirectPageBot):
         return super().skip_page(page)
 
     @staticmethod
-    def skipPage(page):
+    def skipPage(page) -> bool:
         """Determine if the page should be skipped."""
         try:
             templates_to_ignore = ignoreTemplates[page.site.code]
@@ -269,7 +269,7 @@ class CommonscatBot(ConfigParserBot, ExistingPageBot, NoRedirectPageBot):
                         return True
         return False
 
-    def treat_page(self):
+    def treat_page(self) -> None:
         """
         Add CommonsCat template to page.
 
@@ -333,7 +333,7 @@ class CommonscatBot(ConfigParserBot, ExistingPageBot, NoRedirectPageBot):
 
     def changeCommonscat(
             self, page=None, oldtemplate='', oldcat='',
-            newtemplate='', newcat='', linktitle=''):
+            newtemplate='', newcat='', linktitle='') -> None:
         """Change the current commonscat template and target."""
         if '3=S' in (oldcat, linktitle):
             return  # TODO: handle additional param on de-wiki
