@@ -153,6 +153,10 @@ class UnicodeOutput(IOBase):
             _complain('{}.writelines: {!r}'.format(self.name, e))
             raise
 
+    def isatty(self):
+        """Return True if the stream is interactive."""
+        return self._hConsole is not None
+
 
 def old_fileno(std_name):
     """Return the fileno or None if that doesn't work."""
@@ -231,7 +235,6 @@ def get_unicode_console() -> Tuple[IO, IO, IO, List[str]]:
     Get Unicode console objects.
 
     :return: stdin, stdout, stderr, argv
-    :rtype: tuple
     """
     # Make Unicode console output work independently of the current code page.
     # This also fixes https://bugs.python.org/issue1602

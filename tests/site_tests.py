@@ -2241,7 +2241,7 @@ class TestSiteSysopWrite(TestCase):
 
         fp1 = pywikibot.FilePage(site, 'File:T276726.png')
         site.loadimageinfo(fp1, history=True)
-        for idx, v in fp1._file_revisions.items():
+        for v in fp1._file_revisions.values():
             if v['timestamp'] == ts1:
                 self.assertTrue(hasattr(v, 'userhidden'))
 
@@ -2359,7 +2359,8 @@ class SiteRandomTestCase(DefaultSiteTestCase):
         super().setUpClass()
         site = cls.get_site()
         if site.family.name in ('wpbeta', 'wsbeta'):
-            cls.skipTest('Skipping test on {} due to T282602'.format(site))
+            cls.skipTest(cls,
+                         'Skipping test on {} due to T282602' .format(site))
 
     def test_unlimited_small_step(self):
         """Test site.randompages() continuation.

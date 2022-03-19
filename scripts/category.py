@@ -137,7 +137,7 @@ from typing import Optional, Union
 
 import pywikibot
 from pywikibot import config, i18n, pagegenerators, textlib
-from pywikibot.backports import Sequence, Set
+from pywikibot.backports import Sequence, Set  # skipcq: PY-W2000
 from pywikibot.bot import (
     BaseBot,
     Bot,
@@ -273,7 +273,7 @@ class CategoryPreprocess(BaseBot):
 
         tmpl = []  # type: Sequence
         with suppress(KeyError):
-            tmpl, loc = moved_links[page.site.code]
+            tmpl, _loc = moved_links[page.site.code]
 
         if not isinstance(tmpl, list):
             tmpl = [tmpl]
@@ -613,10 +613,10 @@ class CategoryMoveRobot(CategoryPreprocess):
         self.oldtalk = self.oldcat.toggleTalkPage()
 
         if newcat:
-            self.newcat = self._makecat(newcat)
+            self.newcat = self._makecat(newcat)  # type: Optional[pywikibot.Category]  # noqa: E501
             self.newtalk = self.newcat.toggleTalkPage()
         else:
-            self.newcat = None  # type: ignore
+            self.newcat = None
             self.newtalk = None
 
         # Set boolean settings.

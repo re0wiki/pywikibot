@@ -104,6 +104,7 @@ jobs:
         echo "usernames['commons']['commons'] = '${{ env.PYWIKIBOT_USERNAME }}'" >> user-config.py
         echo "usernames['meta']['meta'] = '${{ env.PYWIKIBOT_USERNAME }}'" >> user-config.py
         echo "max_retries = 3" >> user-config.py
+        echo "noisysleep = float('inf')" >> user-config.py
         echo "maximum_GET_length = 5000" >> user-config.py
         echo "console_encoding = 'utf8'" >> user-config.py
         echo "import os" >> user-config.py
@@ -111,6 +112,8 @@ jobs:
         echo "('${{ env.PYWIKIBOT_USERNAME }}', '${{ secrets.PYWIKIBOT_USERPWD }}')" > passwordfile
 
     - name: Test with unittest or pytest
+      id: ci_test
+      continue-on-error: true
       env:
         PYWIKIBOT_TEST_NO_RC:
           ${{ (matrix.site == 'wikisource:zh' || matrix.test_no_rc) && 1 || 0 }}
@@ -126,3 +129,7 @@ jobs:
 
     - name: Upload coverage to Codecov
       run: codecov
+
+    - name: Check on failure
+      if: steps.ci_test.outcome == 'failure'
+      run: exit 1

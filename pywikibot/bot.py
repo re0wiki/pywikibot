@@ -695,7 +695,7 @@ class InteractiveReplace:
         self._default = default
         self._quit = automatic_quit
 
-        current_match_type = Optional[Tuple[
+        current_match_type = Optional[Tuple[  # skipcq: PYL-W0612
             PageLinkType,
             str,
             Mapping[str, str],
@@ -994,11 +994,12 @@ def show_help(module_name: Optional[str] = None,
         try:
             main = sys.modules['__main__'].main  # type: ignore[attr-defined]
             module_name = main.__module__
+            assert module_name is not None
         except NameError:
             module_name = 'no_module'
 
     try:
-        module = import_module(module_name)  # type: ignore
+        module = import_module(module_name)
         help_text = module.__doc__  # type: str # type: ignore[assignment]
         if hasattr(module, 'docuReplacements'):
             for key, value in module.docuReplacements.items():

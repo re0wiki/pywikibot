@@ -22,7 +22,7 @@ OCR support of page scans via:
 
 """
 #
-# (C) Pywikibot team, 2015-2021
+# (C) Pywikibot team, 2015-2022
 #
 # Distributed under the terms of the MIT license.
 #
@@ -77,7 +77,7 @@ PagesFromLabelType = Dict[str, Set['pywikibot.page.Page']]
 _IndexType = Tuple[Optional['IndexPage'], List['IndexPage']]
 
 
-def decompose(fn: Callable) -> Callable:  # type: ignore # noqa: N805
+def decompose(fn: Callable) -> Callable:  # type: ignore
     """Decorator for ProofreadPage.
 
     Decompose text if needed and recompose text.
@@ -92,7 +92,7 @@ def decompose(fn: Callable) -> Callable:  # type: ignore # noqa: N805
     return wrapper
 
 
-def check_if_cached(fn: Callable) -> Callable:  # type: ignore # noqa: N805
+def check_if_cached(fn: Callable) -> Callable:  # type: ignore
     """Decorator for IndexPage to ensure data is cached."""
     def wrapper(self: 'IndexPage', *args: Any, **kwargs: Any) -> Any:
         if self._cached is False:
@@ -680,7 +680,7 @@ class ProofreadPage(pywikibot.Page):
             soup = _bs4_soup(txt)  # type: ignore
 
             res = []
-            for ocr_page in soup.find_all(class_='ocr_page'):
+            for _ocr_page in soup.find_all(class_='ocr_page'):
                 for area in soup.find_all(class_='ocr_carea'):
                     for par in area.find_all(class_='ocr_par'):
                         for line in par.find_all(class_='ocr_line'):
@@ -906,11 +906,7 @@ class IndexPage(pywikibot.Page):
         self._pages_from_label = {}  # type: PagesFromLabelType
         self._labels_from_page_number = {}  # type: Dict[int, str]
         self._labels_from_page = {}  # type: Dict[pywikibot.page.Page, str]
-        if hasattr(self, '_parsed_text'):
-            del self._parsed_text
-
-        self._parsed_text = self._get_parsed_page()
-        self._soup = _bs4_soup(self._parsed_text)  # type: ignore
+        self._soup = _bs4_soup(self.get_parsed_page(True))  # type: ignore
         # Do not search for "new" here, to avoid to skip purging if links
         # to non-existing pages are present.
         attrs = {'class': re.compile('prp-pagequality')}
@@ -932,9 +928,7 @@ class IndexPage(pywikibot.Page):
         attrs = {'class': re.compile('prp-pagequality|new')}
         if not found:
             self.purge()
-            del self._parsed_text
-            self._parsed_text = self._get_parsed_page()
-            self._soup = _bs4_soup(self._parsed_text)  # type: ignore
+            self._soup = _bs4_soup(self.get_parsed_page(True))  # type: ignore
             if not self._soup.find_all('a', attrs=attrs):
                 raise ValueError(
                     'Missing class="qualityN prp-pagequality-N" or '

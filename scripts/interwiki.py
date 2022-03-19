@@ -1067,6 +1067,50 @@ class Subject(interwiki_graph.Subject):
                     if self.conf.hintsareright:
                         self.hintedsites.add(page.site)
 
+    def redir_checked(self, page, counter):
+        """Check and handle redirect. Return True if check is done."""
+        if page.isRedirectPage():
+            redirect_target = page.getRedirectTarget()
+            redir = ''
+        elif page.isCategoryRedirect():
+            redirect_target = page.getCategoryRedirectTarget()
+            redir = 'category '
+        else:
+            return False
+
+        self.conf.note('{} is {}redirect to {}'
+                       .format(page, redir, redirect_target))
+        if self.origin is None or page == self.origin:
+            # the 1st existig page becomes the origin page, if none was
+            # supplied
+            if self.conf.initialredirect:
+                # don't follow another redirect; it might be a self
+                # loop
+                if not redirect_target.isRedirectPage() \
+                   and not redirect_target.isCategoryRedirect():
+                    self.origin = redirect_target
+                    self.todo.append(redirect_target)
+                    counter.plus(redirect_target.site)
+            else:
+                # This is a redirect page to the origin. We don't need
+                # to follow the redirection.
+                # In this case we can also stop all hints!
+                for site, count in self.todo.iter_values_len():
+                    counter.minus(site, count)
+                self.todo.clear()
+        elif not self.conf.followredirect:
+            self.conf.note('not following {}redirects.'.format(redir))
+        elif page.isStaticRedirect():
+            self.conf.note('not following static {}redirects.'.format(redir))
+        elif (page.site.family == redirect_target.site.family
+              and not self.skipPage(page, redirect_target, counter)):
+            if self.addIfNew(redirect_target, counter, page):
+                if config.interwiki_shownew:
+                    pywikibot.output('{}: {} gives new {}redirect {}'
+                                     .format(self.origin, page, redir,
+                                             redirect_target))
+        return True
+
     def check_page(self, page, counter) -> None:
         """Check whether any iw links should be added to the todo list."""
         if not page.exists():
@@ -1083,48 +1127,7 @@ class Subject(interwiki_graph.Subject):
                 self.done.clear()
             return
 
-        if page.isRedirectPage():
-            redirectTargetPage = page.getRedirectTarget()
-            redir = ''
-        elif page.isCategoryRedirect():
-            redirectTargetPage = page.getCategoryRedirectTarget()
-            redir = 'category '
-        else:
-            redir = None
-
-        if redir is not None:
-            self.conf.note('{} is {}redirect to {}'
-                           .format(page, redir, redirectTargetPage))
-            if self.origin is None or page == self.origin:
-                # the 1st existig page becomes the origin page, if none was
-                # supplied
-                if self.conf.initialredirect:
-                    # don't follow another redirect; it might be a self
-                    # loop
-                    if not redirectTargetPage.isRedirectPage() \
-                       and not redirectTargetPage.isCategoryRedirect():
-                        self.origin = redirectTargetPage
-                        self.todo.append(redirectTargetPage)
-                        counter.plus(redirectTargetPage.site)
-                else:
-                    # This is a redirect page to the origin. We don't need
-                    # to follow the redirection.
-                    # In this case we can also stop all hints!
-                    for site, count in self.todo.iter_values_len():
-                        counter.minus(site, count)
-                    self.todo.clear()
-            elif not self.conf.followredirect:
-                self.conf.note('not following {}redirects.'.format(redir))
-            elif page.isStaticRedirect():
-                self.conf.note('not following static {}redirects.'
-                               .format(redir))
-            elif (page.site.family == redirectTargetPage.site.family
-                  and not self.skipPage(page, redirectTargetPage, counter)):
-                if self.addIfNew(redirectTargetPage, counter, page):
-                    if config.interwiki_shownew:
-                        pywikibot.output('{}: {} gives new {}redirect {}'
-                                         .format(self.origin, page, redir,
-                                                 redirectTargetPage))
+        if self.redir_checked(page, counter):
             return
 
         # must be behind the page.isRedirectPage() part
@@ -1441,15 +1444,11 @@ class Subject(interwiki_graph.Subject):
                              .format(self.origin))
             return
 
-        # The following check is not always correct and thus disabled.
-        # self.done might contain no interwiki links because of the -neverlink
-        # argument or because of disambiguation conflicts.
-#         if len(self.done) == 1:
-#             # No interwiki at all
-#             return
+        self.post_processing()
 
-        pywikibot.output('======Post-processing {}======'
-                         .format(self.origin))
+    def post_processing(self):
+        """Some finishing processes to be done."""
+        pywikibot.output('======Post-processing {}======'.format(self.origin))
         # Assemble list of accepted interwiki links
         new = self.assemble()
         if new is None:  # User said give up
@@ -1467,85 +1466,83 @@ class Subject(interwiki_graph.Subject):
             new[self.origin.site] = self.origin
 
         updatedSites = []
-        notUpdatedSites = []
         # Process all languages here
         self.conf.always = False
         if self.conf.limittwo:
-            lclSite = self.origin.site
-            lclSiteDone = False
-            frgnSiteDone = False
-
-            for siteCode in lclSite.family.languages_by_size:
-                site = pywikibot.Site(siteCode, lclSite.family)
-                if (not lclSiteDone and site == lclSite) \
-                   or (not frgnSiteDone and site != lclSite and site in new):
-                    if site == lclSite:
-                        lclSiteDone = True   # even if we fail the update
-                    if (site.family.name in config.usernames
-                            and site.code in config.usernames[
-                                site.family.name]):
-                        try:
-                            if self.replaceLinks(new[site], new):
-                                updatedSites.append(site)
-                            if site != lclSite:
-                                frgnSiteDone = True
-                        except SaveError:
-                            notUpdatedSites.append(site)
-                        except GiveUpOnPage:
-                            break
-                elif (not self.conf.strictlimittwo
-                      and site in new and site != lclSite):
-                    old = {}
-                    try:
-                        for link in new[site].iterlanglinks():
-                            page = pywikibot.Page(link)
-                            old[page.site] = page
-                    except NoPageError:
-                        pywikibot.output('BUG>>> {} no longer exists?'
-                                         .format(new[site]))
-                        continue
-                    mods, mcomment, adding, removing, modifying \
-                        = compareLanguages(old, new, lclSite,
-                                           self.conf.summary)
-                    if (removing and not self.conf.autonomous
-                        or modifying and self.problemfound
-                        or not old
-                        or (self.conf.needlimit
-                            and len(adding) + len(modifying)
-                            >= self.conf.needlimit + 1)):
-                        try:
-                            if self.replaceLinks(new[site], new):
-                                updatedSites.append(site)
-                        except SaveError:
-                            notUpdatedSites.append(site)
-                        except NoUsernameError:
-                            pass
-                        except GiveUpOnPage:
-                            break
+            self.process_limittwo(new, updatedSites)
         else:
-            for (site, page) in new.items():
-                # if we have an account for this site
-                if site.family.name in config.usernames \
-                   and site.code in config.usernames[site.family.name] \
-                   and not site.has_data_repository:
-                    # Try to do the changes
-                    try:
-                        if self.replaceLinks(page, new):
-                            # Page was changed
-                            updatedSites.append(site)
-                    except SaveError:
-                        notUpdatedSites.append(site)
-                    except GiveUpOnPage:
-                        break
-
-        # disabled graph drawing for minor problems: it just takes too long
-        # if notUpdatedSites != [] and config.interwiki_graph:
-        #    # at least one site was not updated, save a conflict graph
-        #    self.createGraph()
+            self.process_unlimited(new, updatedSites)
 
         # don't report backlinks for pages we already changed
         if config.interwiki_backlink:
             self.reportBacklinks(new, updatedSites)
+
+    def process_limit_two(self, new, updated):
+        """Post process limittwo."""
+        lclSite = self.origin.site
+        lclSiteDone = False
+        frgnSiteDone = False
+
+        for code in lclSite.family.languages_by_size:
+            site = pywikibot.Site(code, lclSite.family)
+            if not lclSiteDone and site == lclSite \
+               or (not frgnSiteDone and site != lclSite and site in new):
+                if site == lclSite:
+                    lclSiteDone = True   # even if we fail the update
+                if (site.family.name in config.usernames
+                        and site.code in config.usernames[site.family.name]):
+                    try:
+                        if self.replaceLinks(new[site], new):
+                            updated.append(site)
+                        if site != lclSite:
+                            frgnSiteDone = True
+                    except SaveError:
+                        pass
+                    except GiveUpOnPage:
+                        break
+
+            elif (not self.conf.strictlimittwo
+                  and site in new and site != lclSite):
+                old = {}
+                try:
+                    for link in new[site].iterlanglinks():
+                        page = pywikibot.Page(link)
+                        old[page.site] = page
+                except NoPageError:
+                    pywikibot.error('{} no longer exists?'.format(new[site]))
+                    continue
+                *_, adding, removing, modifying = compareLanguages(
+                    old, new, lclSite, self.conf.summary)
+                if (removing and not self.conf.autonomous
+                    or modifying and self.problemfound
+                    or not old
+                    or (self.conf.needlimit
+                        and len(adding) + len(modifying)
+                        >= self.conf.needlimit + 1)):
+                    try:
+                        if self.replaceLinks(new[site], new):
+                            updated.append(site)
+                    except (NoUsernameError, SaveError):
+                        pass
+                    except GiveUpOnPage:
+                        break
+
+    def process_unlimited(self, new, updated):
+        """Post process unlimited."""
+        for (site, page) in new.items():
+            # if we have an account for this site
+            if site.family.name in config.usernames \
+               and site.code in config.usernames[site.family.name] \
+               and not site.has_data_repository:
+                # Try to do the changes
+                try:
+                    if self.replaceLinks(page, new):
+                        # Page was changed
+                        updated.append(site)
+                except SaveError:
+                    pass
+                except GiveUpOnPage:
+                    break
 
     def replaceLinks(self, page, newPages) -> bool:
         """Return True if saving was successful."""
@@ -1621,12 +1618,8 @@ class Subject(interwiki_graph.Subject):
             old[page2.site] = page2
 
         # Check what needs to get done
-        mods, mcomment, adding, removing, modifying = compareLanguages(
-            old,
-            new,
-            page.site,
-            self.conf.summary
-        )
+        mods, _comment, _adding, removing, modifying = compareLanguages(
+            old, new, page.site, self.conf.summary)
 
         # When running in autonomous mode without -force switch, make sure we
         # don't remove any items, but allow addition of the new ones
@@ -1897,7 +1890,7 @@ class InterwikiBot:
         pywikibot.output(
             'NOTE: Number of pages queued is {}, trying to add {} more.'
             .format(len(self.subjects), number))
-        for i in range(number):
+        for _ in range(number):
             for page in self.pageGenerator:
                 if page in self.conf.skip:
                     pywikibot.output('Skipping: {} is in the skip list'
@@ -2045,10 +2038,11 @@ class InterwikiBot:
         # Get the content of the assembled list in one blow
         gen = site.preloadpages(pageGroup, templates=True, langlinks=True,
                                 pageprops=True)
-        for page in gen:
+        for _ in gen:
             # we don't want to do anything with them now. The
             # page contents will be read via the Subject class.
             pass
+
         # Tell all of the subjects that the promised work is done
         for subject in subjectGroup:
             subject.batchLoaded(self)
@@ -2163,7 +2157,7 @@ def botMayEdit(page) -> bool:
     return True
 
 
-def page_empty_check(page):
+def page_empty_check(page) -> bool:
     """
     Return True if page should be skipped as it is almost empty.
 
@@ -2171,8 +2165,6 @@ def page_empty_check(page):
     50 characters, and other pages are considered empty if they are not
     category pages and contain less than 4 characters excluding interlanguage
     links and categories.
-
-    :rtype: bool
     """
     txt = page.text
     # Check if the page is in content namespace

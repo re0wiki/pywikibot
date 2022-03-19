@@ -33,7 +33,7 @@ from itertools import zip_longest
 from typing import Any, Optional, Union
 from urllib.parse import urlparse
 
-from requests.exceptions import ReadTimeout  # type: ignore[import]
+from requests.exceptions import ReadTimeout
 
 import pywikibot
 from pywikibot import config, date, i18n, xmlreader
@@ -596,7 +596,7 @@ class GeneratorFactory:
 
             if self.limit:
                 try:
-                    gen_item.set_maximum_items(self.limit)  # type: ignore
+                    gen_item.set_maximum_items(self.limit)  # type: ignore[attr-defined]  # noqa: E501
                 except AttributeError:
                     self.gens[i] = itertools.islice(gen_item, self.limit)
 
@@ -899,8 +899,8 @@ class GeneratorFactory:
             pnames = self.site.get_property_names()
             # also use the default by <enter> key
             if value == '?' or value not in pnames:
-                prefix, value = pywikibot.input_choice(
-                    question, ShowingListOption(pnames))
+                _, value = pywikibot.input_choice(question,
+                                                  ShowingListOption(pnames))
         return self.site.pages_with_property(value)
 
     def _handle_usercontribs(self, value: str) -> HANDLER_RETURN_TYPE:
@@ -2901,7 +2901,7 @@ def WikidataPageFromItemGenerator(gen: Iterable['pywikibot.page.ItemPage'],
                'action': 'wbgetentities',
                'props': 'sitelinks'}
 
-        wbrequest = repo._simple_request(**req)
+        wbrequest = repo.simple_request(**req)
         wbdata = wbrequest.submit()
         entities = (item for item in wbdata['entities'].values() if
                     'sitelinks' in item and site.dbName() in item['sitelinks'])
