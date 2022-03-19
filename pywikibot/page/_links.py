@@ -10,7 +10,7 @@
 #
 # Distributed under the terms of the MIT license.
 #
-import re
+import regex as re
 import unicodedata
 from html.entities import name2codepoint
 

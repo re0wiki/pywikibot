@@ -16,7 +16,7 @@ This module also includes objects:
 import json as jsonlib
 import logging
 import os.path
-import re
+import regex as re
 from collections import Counter, OrderedDict, defaultdict
 from contextlib import suppress
 from http import HTTPStatus
@@ -1987,7 +1987,7 @@ class BasePage(ComparableMixin):
             pywikibot.output('Undeleting {}.'.format(self.title(as_link=True)))
             reason = pywikibot.input(
                 'Please enter a reason for the undeletion:')
-        self.site.undelete(self, reason, revision=undelete_revs)
+        self.site.undelete(self, reason)
 
     def protect(self,
                 reason: Optional[str] = None,
