@@ -1773,15 +1773,20 @@ class BasePage(ComparableMixin):
              newtitle: str,
              reason: Optional[str] = None,
              movetalk: bool = True,
-             noredirect: bool = False):
+             noredirect: bool = False,
+             movesubpages: bool = True) -> None:
         """
         Move this page to a new title.
+
+        .. versionchanged:: 7.2
+           The `movesubpages` parameter was added
 
         :param newtitle: The new page title.
         :param reason: The edit summary for the move.
         :param movetalk: If true, move this page's talk page (if it exists)
         :param noredirect: if move succeeds, delete the old page
             (usually requires sysop privileges, depending on wiki settings)
+        :param movesubpages: Rename subpages, if applicable.
         """
         if reason is None:
             pywikibot.output('Moving {} to [[{}]].'
@@ -1789,7 +1794,8 @@ class BasePage(ComparableMixin):
             reason = pywikibot.input('Please enter a reason for the move:')
         return self.site.movepage(self, newtitle, reason,
                                   movetalk=movetalk,
-                                  noredirect=noredirect)
+                                  noredirect=noredirect,
+                                  movesubpages=movesubpages)
 
     def delete(
         self,
@@ -1910,9 +1916,8 @@ class BasePage(ComparableMixin):
         for item in self.site.deletedrevs(self, start=timestamp,
                                           content=content, total=1, **kwargs):
             # should only be one item with one revision
-            if item['title'] == self.title():
-                if 'revisions' in item:
-                    return item['revisions'][0]
+            if item['title'] == self.title() and 'revisions' in item:
+                return item['revisions'][0]
         return []
 
     def markDeletedRevision(self, timestamp, undelete: bool = True):
@@ -2136,10 +2141,9 @@ class Page(BasePage):
 
     def __init__(self, source, title: str = '', ns=0) -> None:
         """Instantiate a Page object."""
-        if isinstance(source, pywikibot.site.BaseSite):
-            if not title:
-                raise ValueError('Title must be specified and not empty '
-                                 'if source is a Site.')
+        if isinstance(source, pywikibot.site.BaseSite) and not title:
+            raise ValueError('Title must be specified and not empty '
+                             'if source is a Site.')
         super().__init__(source, title, ns)
 
     @property
@@ -2477,6 +2481,14 @@ class FilePage(Page):
             (default False)
         """
         return self.site.imageusage(self, total=total, content=content)
+
+    @property
+    def file_is_used(self) -> bool:
+        """Check whether the file is used at this site.
+
+        .. versionadded:: 7.1
+        """
+        return bool(list(self.usingPages(total=1)))
 
     def upload(self, source: str, **kwargs) -> bool:
         """
@@ -3129,9 +3141,9 @@ class User(Page):
         mailrequest = self.site.simple_request(**params)
         maildata = mailrequest.submit()
 
-        if 'emailuser' in maildata:
-            if maildata['emailuser']['result'] == 'Success':
-                return True
+        if 'emailuser' in maildata \
+           and maildata['emailuser']['result'] == 'Success':
+            return True
         return False
 
     def block(self, *args, **kwargs):
