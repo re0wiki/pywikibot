@@ -58,3 +58,4 @@ beautifulsoup4
 
 # scripts/weblinkchecker.py
 memento_client>=0.5.1,!=0.6.0
+pyjwt>=2.4.0 # not directly required, pinned by Snyk to avoid a vulnerability
