@@ -401,7 +401,8 @@ class FilePage(Page):
             url = revision.url
 
         # adjust suffix
-        path = path.with_suffix(Path(urlparse(url).path).suffix)
+        # This does not work for Fandom wikis.
+        # path = path.with_suffix(Path(urlparse(url).path).suffix)
         # adjust user path
         path = path.expanduser()
         req = http.fetch(url, stream=True)

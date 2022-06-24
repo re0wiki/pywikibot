@@ -125,3 +125,7 @@ Repository = "https://gerrit.wikimedia.org/r/plugins/gitiles/pywikibot/core/"
 Download = "https://www.pywikibot.org"
 Changelog = "https://doc.wikimedia.org/pywikibot/master/changelog.html"
 Tracker = "https://phabricator.wikimedia.org/tag/pywikibot/"
+
+
+[tool.black]
+force-exclude = '.'

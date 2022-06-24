@@ -2062,7 +2062,7 @@ class BasePage(ComparableMixin):
             pywikibot.info(f'Undeleting {self.title(as_link=True)}.')
             reason = pywikibot.input(
                 'Please enter a reason for the undeletion:')
-        self.site.undelete(self, reason, revision=undelete_revs)
+        self.site.undelete(self, reason, revisions=undelete_revs)
 
     def protect(self,
                 reason: str | None = None,
