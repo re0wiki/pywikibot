@@ -347,8 +347,8 @@ class RedirectGenerator(OptionHandler):
                                                      None]:
         """Generate redirects to recently-moved pages."""
         # this will run forever, until user interrupts it
-        if self.opt.offset <= 0:
-            self.opt.offset = 1
+        if self.opt.offset < 0:
+            self.opt.offset = 0
         start = (datetime.datetime.utcnow()
                  - datetime.timedelta(0, self.opt.offset * 3600))
         # self.opt.offset hours ago

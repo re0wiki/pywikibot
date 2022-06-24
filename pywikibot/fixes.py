@@ -43,14 +43,15 @@ fixes = {
     'HTML': {
         'regex': True,
         'msg': 'pywikibot-fixes-html',
+        "generator": "-start::! -start:project:! -start:template:! -start:category:!",
         'replacements': [
             # Everything case-insensitive (?i)
             # Keep in mind that MediaWiki automatically converts <br> to <br />
             # when rendering pages, so you might comment the next two lines out
             # to save some time/edits.
-            (r'(?i)<br *>',                      r'<br />'),
+            (r'(?i)<br */?>',                      r'<br>'),
             # linebreak with attributes
-            (r'(?i)<br ([^>/]+?)>',            r'<br \1 />'),
+            (r'(?i)<br *([^>/]+?) */?>',            r'<br \1>'),
             (r'(?i)<b>(.*?)</b>',              r"'''\1'''"),
             (r'(?i)<strong>(.*?)</strong>',    r"'''\1'''"),
             (r'(?i)<i>(.*?)</i>',              r"''\1''"),
@@ -78,6 +79,7 @@ fixes = {
         ],
         'exceptions': {
             'inside-tags': [
+                "keep",
                 'nowiki',
                 'comment',
                 'math',
@@ -185,6 +187,7 @@ fixes = {
     'syntax': {
         'regex': True,
         'msg': 'pywikibot-fixes-syntax',
+        "generator": "-start::! -start:project:! -start:template:! -start:category:!",
         'replacements': [
             # external link in double brackets
             (r'\[\[(?P<url>https?://[^\]]+?)\]\]',   r'[\g<url>]'),
@@ -199,8 +202,8 @@ fixes = {
             # external link and description separated by a dash.
             # ATTENTION: while this is a mistake in most cases, there are some
             # valid URLs that contain dashes!
-            (r'\[(?P<url>https?://[^\|\]\s]+?) *\| *(?P<label>[^\|\]]+?)\]',
-             r'[\g<url> \g<label>]'),
+            # (r'\[(?P<url>https?://[^\|\]\s]+?) *\| *(?P<label>[^\|\]]+?)\]',
+            #  r'[\g<url> \g<label>]'),
             # wiki link closed by single bracket.
             # ATTENTION: There are some false positives, for example
             # Brainfuck code examples or MS-DOS parameter instructions.
@@ -217,6 +220,7 @@ fixes = {
         ],
         'exceptions': {
             'inside-tags': [
+                "keep",
                 'nowiki',
                 'comment',
                 'math',
@@ -415,6 +419,7 @@ fixes = {
         ],
         'exceptions': {
             'inside-tags': [
+                "keep",
                 'comment',
                 'hyperlink',
             ],
@@ -582,6 +587,7 @@ fixes = {
             'en': 'Robot: Fixing special page capitalisation',
             'fa': 'ربات: تصحیح بزرگی و کوچکی حروف صفحه‌های ویژه',
         },
+        "generator": "-start::! -start:project:! -start:template:! -start:category:!",
         'replacements': [
             ('Special:Allpages',        'Special:AllPages'),
             ('Special:Blockip',         'Special:BlockIP'),
@@ -602,6 +608,11 @@ fixes = {
             ('Special:Userlogout',      'Special:UserLogout'),
             ('Special:Whatlinkshere',   'Special:WhatLinksHere'),
         ],
+        'exceptions': {
+            'inside-tags': [
+                "keep",
+            ],
+        },
     },
     # yu top-level domain will soon be disabled, see
     # https://lists.wikimedia.org/pipermail/wikibots-l/2009-February/000290.html

@@ -220,7 +220,7 @@ def main(*args: str) -> None:
             if old_name:
                 pywikibot.warning('-from:{} without -to:'.format(old_name))
             old_name = value
-        elif opt == 'to:':
+        elif opt == 'to':
             if old_name:
                 from_to_pairs.append([old_name, value])
                 old_name = None

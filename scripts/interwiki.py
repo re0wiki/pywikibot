@@ -1334,7 +1334,7 @@ class Subject(interwiki_graph.Subject):
                 if site != self.origin.site:
                     new[site].append(page)
                 elif page != self.origin:
-                    self.problem('Found link to ' + page)
+                    self.problem('Found link to ' + str(page))
                     self.whereReport(page)
                     errorCount += 1
 
