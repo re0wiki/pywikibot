@@ -4,7 +4,7 @@
 #
 # Distributed under the terms of the MIT license.
 #
-import re
+import regex as re
 from abc import ABC, abstractmethod
 from textwrap import fill
 from typing import Any, Optional

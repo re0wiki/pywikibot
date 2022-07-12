@@ -9,7 +9,7 @@
 #
 import datetime
 import math
-import re
+import regex as re
 import types
 from typing import Type, Union
 

@@ -6,7 +6,7 @@
 #
 import collections
 import logging
-import re
+import regex as re
 import string
 import sys
 import types

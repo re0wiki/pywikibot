@@ -113,7 +113,7 @@ Options (may be omitted):
 import datetime
 import locale
 import os
-import re
+import regex as re
 import time
 from collections import OrderedDict, defaultdict
 from hashlib import md5

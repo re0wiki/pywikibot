@@ -66,7 +66,7 @@ can be added between them by specifying '\n' as a value.
 #
 import codecs
 import os
-import re
+import regex as re
 from typing import Generator
 
 import pywikibot

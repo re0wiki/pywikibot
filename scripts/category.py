@@ -128,7 +128,7 @@ import codecs
 import math
 import os
 import pickle
-import re
+import regex as re
 from contextlib import suppress
 from operator import methodcaller
 from textwrap import fill

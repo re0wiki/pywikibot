@@ -5,7 +5,7 @@
 # Distributed under the terms of the MIT license.
 #
 import datetime
-import re
+import regex as re
 from collections import namedtuple
 from functools import partial
 from typing import Optional, Union

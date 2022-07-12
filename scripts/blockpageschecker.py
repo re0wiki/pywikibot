@@ -48,7 +48,7 @@ Examples::
 #
 # Distributed under the terms of the MIT license.
 #
-import re
+import regex as re
 import webbrowser
 from collections import namedtuple
 from itertools import chain

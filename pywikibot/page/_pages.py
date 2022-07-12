@@ -20,7 +20,7 @@ various pages for Proofread Extensions are defined in
 # Distributed under the terms of the MIT license.
 #
 import itertools
-import re
+import regex as re
 from collections import Counter, defaultdict
 from contextlib import suppress
 from itertools import islice

@@ -59,7 +59,7 @@ parameter, and for a description.
 import codecs
 import math
 import os
-import re
+import regex as re
 
 import pywikibot
 from pywikibot.bot import suggest_help

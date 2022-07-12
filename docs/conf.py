@@ -21,7 +21,7 @@
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 #
 import os
-import re
+import regex as re
 import sys
 import warnings
 from os.path import abspath, dirname, join

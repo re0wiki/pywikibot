@@ -33,7 +33,7 @@ a list of affected articles
 #
 # Distributed under the terms of the MIT license.
 #
-import re
+import regex as re
 from functools import partial
 
 import pywikibot

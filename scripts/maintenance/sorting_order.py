@@ -6,7 +6,7 @@
 # Distributed under the terms of the MIT license.
 #
 import codecs
-import re
+import regex as re
 
 import pywikibot
 from pywikibot.family import Family

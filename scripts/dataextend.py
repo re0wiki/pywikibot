@@ -60,7 +60,7 @@ included.
 #
 import codecs
 import datetime
-import re
+import regex as re
 import ssl
 
 from collections import defaultdict

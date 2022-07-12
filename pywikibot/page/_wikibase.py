@@ -14,7 +14,7 @@ This module also includes objects:
 # Distributed under the terms of the MIT license.
 #
 import json as jsonlib
-import re
+import regex as re
 from collections import OrderedDict, defaultdict
 from contextlib import suppress
 from itertools import chain

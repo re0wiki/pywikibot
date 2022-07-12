@@ -22,7 +22,7 @@ See :py:obj:`twtranslate` for more information on the messages.
 import json
 import os
 import pkgutil
-import re
+import regex as re
 from collections import abc, defaultdict
 from contextlib import suppress
 from pathlib import Path

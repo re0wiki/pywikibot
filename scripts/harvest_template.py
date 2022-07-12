@@ -101,7 +101,7 @@ will not add duplicate claims for the same member:
 #
 # Distributed under the terms of MIT License.
 #
-import re
+import regex as re
 import signal
 import sys
 from typing import Any, Iterator, Optional

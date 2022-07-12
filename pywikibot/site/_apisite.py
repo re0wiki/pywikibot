@@ -5,7 +5,7 @@
 # Distributed under the terms of the MIT license.
 #
 import datetime
-import re
+import regex as re
 import time
 import typing
 from collections import OrderedDict, defaultdict, namedtuple
