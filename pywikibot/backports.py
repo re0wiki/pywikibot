@@ -92,7 +92,7 @@ else:
         Mapping,
         Sequence,
     )
-    from re import Match, Pattern
+    from regex import Match, Pattern
     Dict = dict  # type: ignore[misc]
     FrozenSet = frozenset  # type: ignore[misc]
     List = list  # type: ignore[misc]
