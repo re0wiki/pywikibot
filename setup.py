@@ -28,7 +28,7 @@ from __future__ import annotations
 
 import configparser
 import os
-import regex as re
+import re
 import sys
 from contextlib import suppress
 from pathlib import Path
