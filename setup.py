@@ -25,7 +25,7 @@
 # Distributed under the terms of the MIT license.
 #
 import os
-import regex as re
+import re
 import sys
 from setuptools import setup
 
