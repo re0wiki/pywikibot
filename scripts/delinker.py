@@ -36,7 +36,7 @@ The following parameters are supported:
 #
 import configparser
 import heapq
-import re
+import regex as re
 
 import pywikibot
 from pywikibot.backports import removeprefix

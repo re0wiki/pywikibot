@@ -55,7 +55,7 @@ functions will be listed.
 #   for the beauty of the program, does not effect anything).
 
 import codecs
-import re
+import regex as re
 from collections import Counter
 
 import pywikibot

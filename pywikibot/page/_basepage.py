@@ -5,7 +5,7 @@
 # Distributed under the terms of the MIT license.
 #
 import itertools
-import re
+import regex as re
 from collections import Counter
 from contextlib import suppress
 from itertools import islice

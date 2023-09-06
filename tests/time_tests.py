@@ -6,7 +6,7 @@
 # Distributed under the terms of the MIT license.
 #
 import calendar
-import re
+import regex as re
 import unittest
 from contextlib import suppress
 from datetime import datetime, timedelta

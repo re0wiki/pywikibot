@@ -60,7 +60,7 @@ included.
 #
 import codecs
 import datetime
-import re
+import regex as re
 from collections import defaultdict
 from contextlib import suppress
 from html import unescape

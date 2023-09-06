@@ -163,7 +163,7 @@ badwords at all but can be used for some bad-nickname.
 import codecs
 import locale
 import pickle
-import re
+import regex as re
 import time
 from contextlib import suppress
 from datetime import timedelta

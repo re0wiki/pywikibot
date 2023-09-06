@@ -25,7 +25,7 @@ a deprecator without any arguments.
 #
 import collections
 import inspect
-import re
+import regex as re
 import sys
 import types
 

@@ -8,7 +8,7 @@ import abc
 import datetime
 import json
 import math
-import re
+import regex as re
 from decimal import Decimal
 from typing import TYPE_CHECKING, Any, Optional, Type, Union
 

@@ -10,7 +10,7 @@ import inspect
 import os
 import pickle
 import pprint
-import re
+import regex as re
 import traceback
 from collections.abc import MutableMapping
 from contextlib import suppress

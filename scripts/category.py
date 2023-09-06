@@ -151,7 +151,7 @@ import codecs
 import math
 import os
 import pickle
-import re
+import regex as re
 from contextlib import suppress
 from itertools import chain
 from operator import methodcaller

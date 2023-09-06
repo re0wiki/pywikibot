@@ -146,7 +146,7 @@ the top of the help.
 #
 # Distributed under the terms of the MIT license.
 #
-import re
+import regex as re
 from collections.abc import Sequence
 from contextlib import suppress
 from pathlib import Path

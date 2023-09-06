@@ -5,7 +5,7 @@
 # Distributed under the terms of the MIT license.
 #
 import math
-import re
+import regex as re
 
 from pywikibot.logging import output
 from pywikibot.tools import deprecated

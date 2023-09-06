@@ -6,7 +6,7 @@
 #
 import calendar
 import datetime
-import re
+import regex as re
 from collections import abc, defaultdict
 from contextlib import suppress
 from functools import singledispatch

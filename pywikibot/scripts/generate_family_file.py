@@ -36,7 +36,7 @@ base directory.
 #
 import codecs
 import os
-import re
+import regex as re
 import string
 import sys
 from contextlib import suppress

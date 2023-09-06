@@ -14,7 +14,7 @@
 #
 import codecs
 import os
-import re
+import regex as re
 import sys
 from collections import namedtuple
 from pathlib import Path

@@ -6,7 +6,7 @@
 #
 import atexit
 import datetime
-import re
+import regex as re
 import sys
 import threading
 from contextlib import suppress

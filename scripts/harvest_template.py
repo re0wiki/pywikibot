@@ -111,7 +111,7 @@ the inverse claim is imported to the topic item as Wikidata property "P910"
 #
 # Distributed under the terms of MIT License.
 #
-import re
+import regex as re
 import signal
 import sys
 from typing import Any, Iterator, Optional

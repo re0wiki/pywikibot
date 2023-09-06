@@ -55,7 +55,7 @@ or by adding a list to the given one::
 #
 # Distributed under the terms of the MIT license.
 #
-import re
+import regex as re
 from contextlib import suppress
 from enum import IntEnum
 from typing import Any, Union

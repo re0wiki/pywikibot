@@ -32,7 +32,7 @@ To enable access via cookies, assign cookie handling class::
 #
 import atexit
 import codecs
-import re
+import regex as re
 import sys
 import traceback
 from contextlib import suppress

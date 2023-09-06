@@ -81,7 +81,7 @@ To complete a move of a page, one can use:
 #
 import codecs
 import os
-import re
+import regex as re
 from contextlib import suppress
 from itertools import chain
 from typing import Generator, Optional

@@ -5,7 +5,7 @@
 # Distributed under the terms of the MIT license.
 #
 import queue
-import re
+import regex as re
 import threading
 import time
 

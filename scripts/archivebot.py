@@ -124,7 +124,7 @@ Options (may be omitted):
 import datetime
 import locale
 import os
-import re
+import regex as re
 import signal
 import threading
 import time

@@ -8,7 +8,7 @@
 # Distributed under the terms of the MIT license.
 #
 import collections
-import re
+import regex as re
 from typing import Optional
 
 import pywikibot
