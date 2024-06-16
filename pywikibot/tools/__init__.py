@@ -29,7 +29,7 @@ import hashlib
 import ipaddress
 import lzma
 import os
-import re
+import regex as re
 import stat
 import subprocess
 from contextlib import suppress

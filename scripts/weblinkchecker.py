@@ -112,7 +112,7 @@ from __future__ import annotations
 
 import codecs
 import pickle
-import re
+import regex as re
 import threading
 import time
 import urllib.parse as urlparse

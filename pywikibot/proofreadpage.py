@@ -30,7 +30,7 @@ from __future__ import annotations
 
 import collections.abc
 import json
-import re
+import regex as re
 import time
 from functools import partial
 from http import HTTPStatus

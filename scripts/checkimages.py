@@ -78,7 +78,7 @@ right parameter.
 from __future__ import annotations
 
 import collections
-import re
+import regex as re
 import time
 from itertools import zip_longest
 from typing import Generator

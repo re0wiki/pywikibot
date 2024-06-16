@@ -9,7 +9,7 @@ from __future__ import annotations
 import codecs
 import datetime
 import os
-import re
+import regex as re
 import webbrowser
 from enum import IntEnum
 from typing import Any

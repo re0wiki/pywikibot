@@ -10,7 +10,7 @@
 from __future__ import annotations
 
 import collections
-import re
+import regex as re
 
 import pywikibot
 from pywikibot import config

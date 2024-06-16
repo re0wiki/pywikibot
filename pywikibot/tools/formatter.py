@@ -7,7 +7,7 @@
 from __future__ import annotations
 
 import math
-import re
+import regex as re
 
 from pywikibot.logging import info
 from pywikibot.tools import deprecated

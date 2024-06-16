@@ -8,7 +8,7 @@
 from __future__ import annotations
 
 import datetime
-import re
+import regex as re
 from contextlib import suppress
 
 from pywikibot.textlib import TimeStripper

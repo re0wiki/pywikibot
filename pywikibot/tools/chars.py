@@ -6,7 +6,7 @@
 #
 from __future__ import annotations
 
-import re
+import regex as re
 import sys
 from contextlib import suppress
 from urllib.parse import unquote

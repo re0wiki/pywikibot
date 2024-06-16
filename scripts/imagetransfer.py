@@ -43,7 +43,7 @@ used on a page reachable via interwiki links.
 #
 from __future__ import annotations
 
-import re
+import regex as re
 import sys
 
 import pywikibot

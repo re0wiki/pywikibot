@@ -148,7 +148,7 @@ the top of the help.
 #
 from __future__ import annotations
 
-import re
+import regex as re
 from collections.abc import Sequence
 from contextlib import suppress
 from pathlib import Path

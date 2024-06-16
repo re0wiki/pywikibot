@@ -44,7 +44,7 @@ import collections
 import copy
 import os
 import platform
-import re
+import regex as re
 import stat
 import sys
 import types

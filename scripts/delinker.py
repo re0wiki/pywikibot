@@ -38,7 +38,7 @@ from __future__ import annotations
 
 import configparser
 import heapq
-import re
+import regex as re
 
 import pywikibot
 from pywikibot.backports import removeprefix

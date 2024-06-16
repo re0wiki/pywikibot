@@ -7,7 +7,7 @@
 from __future__ import annotations
 
 import itertools
-import re
+import regex as re
 from collections import OrderedDict
 from collections.abc import Sequence
 from contextlib import suppress

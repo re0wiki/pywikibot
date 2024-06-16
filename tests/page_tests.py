@@ -8,7 +8,7 @@
 from __future__ import annotations
 
 import pickle
-import re
+import regex as re
 from contextlib import suppress
 from datetime import timedelta
 from unittest import mock

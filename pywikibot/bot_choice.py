@@ -6,7 +6,7 @@
 #
 from __future__ import annotations
 
-import re
+import regex as re
 from abc import ABC, abstractmethod
 from textwrap import fill
 from typing import TYPE_CHECKING, Any

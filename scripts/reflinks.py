@@ -51,7 +51,7 @@ from __future__ import annotations
 import http.client as httplib
 import itertools
 import os
-import re
+import regex as re
 import subprocess
 import tempfile
 from contextlib import suppress

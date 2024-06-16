@@ -7,7 +7,7 @@
 from __future__ import annotations
 
 import queue
-import re
+import regex as re
 import threading
 import time
 

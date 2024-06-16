@@ -40,7 +40,7 @@ from __future__ import annotations
 
 import codecs
 import os
-import re
+import regex as re
 import string
 import sys
 from contextlib import suppress
