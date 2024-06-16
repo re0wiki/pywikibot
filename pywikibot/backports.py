@@ -66,7 +66,7 @@ else:
         Mapping,
         Sequence,
     )
-    from re import Match, Pattern
+    from regex import Match, Pattern
     Dict = dict  # type: ignore[misc]
 
 
