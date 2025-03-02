@@ -161,21 +161,13 @@ def main(*args: str) -> None:
              'history': edithistpage.title(as_link=True,
                                            insite=targetpage.site)}
         )
-        text += f'<noinclude>\n\n<small>{note}</small></noinclude>'
 
-        pywikibot.log('Getting edit history.')
-        historytable = page.getVersionHistoryTable()
+        if page.namespace().id not in (8, 828):
+            text += f"\n{source_link}"
 
-        pywikibot.log('Putting edit history.')
         summary = twtranslate(tosite, 'transferbot-summary',
                               {'source': source_link})
-        edithistpage.put(historytable, summary=summary)
-
         pywikibot.log('Putting page text.')
-        edithist_link = ' ([[{target}/edithistory|history]])'.format(
-            target=targetpage.title()
-            if not targetpage.namespace().subpages else '')
-        summary += edithist_link
         targetpage.put(text, summary=summary)
 
 

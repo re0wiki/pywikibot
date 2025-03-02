@@ -201,3 +201,7 @@ ignore = ["D105", "D211", "D213", "D214", "D401", "D404", "D406", "D407", "D412"
 "pywikibot/families/*" = ["D102"]
 "scripts/dataextend.py" = ["D101", "D102"]
 "tests/ui_tests.py" = ["D102", "D103"]
+
+
+[tool.black]
+force-exclude = '.'
