@@ -7,7 +7,7 @@
 from __future__ import annotations
 
 import itertools
-import re
+import regex as re
 import sys
 from datetime import timedelta
 from functools import partial

@@ -15,7 +15,7 @@ This module also includes objects:
 from __future__ import annotations
 
 import json as jsonlib
-import re
+import regex as re
 from collections import OrderedDict, defaultdict
 from contextlib import suppress
 from itertools import chain

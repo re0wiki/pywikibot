@@ -159,7 +159,7 @@ from __future__ import annotations
 import datetime
 import locale
 import os
-import re
+import regex as re
 import signal
 import threading
 import time

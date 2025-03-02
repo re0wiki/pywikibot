@@ -82,7 +82,7 @@ from __future__ import annotations
 
 import codecs
 import os
-import re
+import regex as re
 from contextlib import suppress
 from itertools import chain
 from typing import Generator

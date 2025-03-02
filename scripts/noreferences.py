@@ -34,7 +34,7 @@ a list of affected articles
 #
 from __future__ import annotations
 
-import re
+import regex as re
 from functools import partial
 from pathlib import Path
 

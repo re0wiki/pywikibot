@@ -351,7 +351,7 @@ from __future__ import annotations
 
 import codecs
 import os
-import re
+import regex as re
 import sys
 from collections import Counter, defaultdict
 from contextlib import suppress

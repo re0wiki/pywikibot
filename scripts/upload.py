@@ -75,7 +75,7 @@ from __future__ import annotations
 import codecs
 import math
 import os
-import re
+import regex as re
 
 import pywikibot
 from pywikibot.bot import suggest_help

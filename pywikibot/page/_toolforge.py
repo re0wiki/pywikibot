@@ -10,7 +10,7 @@
 from __future__ import annotations
 
 import collections
-import re
+import regex as re
 from http import HTTPStatus
 from typing import TYPE_CHECKING
 

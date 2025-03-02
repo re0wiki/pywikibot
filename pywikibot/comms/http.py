@@ -33,7 +33,7 @@ from __future__ import annotations
 
 import atexit
 import codecs
-import re
+import regex as re
 import sys
 import traceback
 from contextlib import suppress

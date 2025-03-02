@@ -10,7 +10,7 @@ import concurrent.futures as futures
 import dataclasses
 import importlib
 import queue
-import re
+import regex as re
 import threading
 import time
 from typing import Any

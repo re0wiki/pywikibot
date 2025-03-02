@@ -12,7 +12,7 @@ import inspect
 import os
 import pickle
 import pprint
-import re
+import regex as re
 import sys
 import traceback
 from collections.abc import MutableMapping

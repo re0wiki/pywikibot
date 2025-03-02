@@ -11,7 +11,7 @@ from __future__ import annotations
 
 import datetime
 import math
-import re
+import regex as re
 import time as _time
 import types
 from contextlib import suppress

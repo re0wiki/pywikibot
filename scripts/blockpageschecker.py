@@ -51,7 +51,7 @@ Examples::
 #
 from __future__ import annotations
 
-import re
+import regex as re
 import webbrowser
 from itertools import chain
 from typing import NamedTuple
