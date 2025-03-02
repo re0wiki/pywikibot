@@ -18,7 +18,7 @@ from __future__ import annotations
 
 from json import dump, load
 from queue import Queue
-from re import findall
+from regex import findall
 from sys import maxunicode
 from threading import Thread
 
