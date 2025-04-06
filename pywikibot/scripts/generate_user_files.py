@@ -16,7 +16,7 @@ from __future__ import annotations
 
 import codecs
 import os
-import re
+import regex as re
 import sys
 from pathlib import Path
 from textwrap import fill

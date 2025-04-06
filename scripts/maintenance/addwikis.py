@@ -15,7 +15,7 @@ Usage:
 #
 from __future__ import annotations
 
-import re
+import regex as re
 import sys
 from pathlib import Path
 

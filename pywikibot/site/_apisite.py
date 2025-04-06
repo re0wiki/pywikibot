@@ -7,7 +7,7 @@
 from __future__ import annotations
 
 import datetime
-import re
+import regex as re
 import time
 import typing
 import webbrowser

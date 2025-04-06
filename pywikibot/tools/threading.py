@@ -9,7 +9,7 @@ from __future__ import annotations
 import dataclasses
 import importlib
 import queue
-import re
+import regex as re
 import threading
 import time
 from concurrent import futures

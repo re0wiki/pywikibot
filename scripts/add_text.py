@@ -70,7 +70,7 @@ category:
 from __future__ import annotations
 
 import codecs
-import re
+import regex as re
 
 import pywikibot
 from pywikibot import config, pagegenerators, textlib

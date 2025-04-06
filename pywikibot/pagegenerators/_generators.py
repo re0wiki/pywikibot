@@ -9,7 +9,7 @@ from __future__ import annotations
 import calendar
 import codecs
 import io
-import re
+import regex as re
 import typing
 from collections import abc
 from functools import partial

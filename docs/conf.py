@@ -22,7 +22,7 @@ from __future__ import annotations
 # documentation root, use Path.resolve() to make it absolute, like shown here.
 #
 import os
-import re
+import regex as re
 import sys
 import warnings
 from pathlib import Path
