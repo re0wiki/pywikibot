@@ -409,8 +409,9 @@ class FilePage(Page):
         else:
             url = revision.url
 
-        # adjust suffix
-        path = path.with_suffix(Path(urlparse(url).path).suffix)
+        # Set format=original. Otherwise, the API will always return a webp file.
+        url += '&format=original'
+
         # adjust user path
         path = path.expanduser()
         req = http.fetch(url, stream=True)

@@ -305,6 +305,7 @@ def _create_default_regexes() -> None:
         'table': re.compile(
             r'(?:(?<=\n)|\A){\|[\S\s]*?\n\|}|%s' % _tag_pattern('table')),
         'template': NESTED_TEMPLATE_REGEX,
+        'keep': re.compile(r'<div class="as-is">[\s\S]*?</div>'),
     })
 
 

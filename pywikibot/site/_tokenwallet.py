@@ -45,6 +45,7 @@ class TokenWallet(Container):
             self.clear()
 
         if not self._tokens:
+            self._tokens = self.site.get_tokens(['csrf'])
             self._tokens = self.site.get_tokens([])
 
         try:

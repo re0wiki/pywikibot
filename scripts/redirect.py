@@ -350,8 +350,8 @@ class RedirectGenerator(OptionHandler):
     def get_moved_pages_redirects(self) -> Generator[pywikibot.Page]:
         """Generate redirects to recently-moved pages."""
         # this will run forever, until user interrupts it
-        if self.opt.offset <= 0:
-            self.opt.offset = 1
+        if self.opt.offset < 0:
+            self.opt.offset = 0
         start = (pywikibot.Timestamp.nowutc()
                  - datetime.timedelta(0, self.opt.offset * 3600))
         # self.opt.offset hours ago
