@@ -313,6 +313,7 @@ def _create_default_regexes() -> None:
             r'(?:(?<=\n)|\A){\|.*?\n\|}|%s' % _tag_pattern('table'),
             re.DOTALL),
         'template': NESTED_TEMPLATE_REGEX,
+        'keep': re.compile(r'<!--\s*as-is\s*-->[\s\S]*?<!--\s*/as-is\s*-->'),
     })
 
 
