@@ -81,6 +81,7 @@ fixes = {
         ],
         'exceptions': {
             'inside-tags': [
+                "keep",
                 'nowiki',
                 'comment',
                 'math',
@@ -220,6 +221,7 @@ fixes = {
         ],
         'exceptions': {
             'inside-tags': [
+                "keep",
                 'nowiki',
                 'comment',
                 'math',
@@ -418,6 +420,7 @@ fixes = {
         ],
         'exceptions': {
             'inside-tags': [
+                "keep",
                 'comment',
                 'hyperlink',
             ],
@@ -605,6 +608,11 @@ fixes = {
             ('Special:Userlogout',      'Special:UserLogout'),
             ('Special:Whatlinkshere',   'Special:WhatLinksHere'),
         ],
+        'exceptions': {
+            'inside-tags': [
+                "keep",
+            ],
+        },
     },
     # These replacements will convert HTML tag from FCK-editor to wiki syntax.
     #
