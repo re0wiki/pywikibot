@@ -24,7 +24,7 @@ from __future__ import annotations
 import json
 import os
 import pkgutil
-import re
+import regex as re
 from collections import abc, defaultdict
 from collections.abc import Generator, Iterable, Iterator, Mapping, Sequence
 from contextlib import suppress

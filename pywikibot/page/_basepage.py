@@ -7,7 +7,7 @@
 from __future__ import annotations
 
 import itertools
-import re
+import regex as re
 from collections import Counter
 from collections.abc import Generator, Iterable
 from contextlib import suppress

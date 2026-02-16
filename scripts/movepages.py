@@ -42,7 +42,7 @@ Furthermore, the following command line parameters are supported:
 #
 from __future__ import annotations
 
-import re
+import regex as re
 from functools import partial
 from itertools import zip_longest
 

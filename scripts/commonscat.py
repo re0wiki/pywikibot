@@ -46,7 +46,7 @@ For example to go through all categories:
 #
 from __future__ import annotations
 
-import re
+import regex as re
 
 import pywikibot
 from pywikibot import i18n, pagegenerators

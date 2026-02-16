@@ -10,7 +10,7 @@ import abc
 import datetime
 import json
 import math
-import re
+import regex as re
 from collections.abc import Iterator, Mapping
 from contextlib import suppress
 from decimal import Decimal

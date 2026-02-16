@@ -17,7 +17,7 @@ XmlEntry objects which can be used by other bots.
 #
 from __future__ import annotations
 
-import re
+import regex as re
 from dataclasses import dataclass
 from typing import NamedTuple
 from xml.etree.ElementTree import Element

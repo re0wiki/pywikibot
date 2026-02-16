@@ -27,7 +27,7 @@ from __future__ import annotations
 
 import collections
 import inspect
-import re
+import regex as re
 import sys
 import types
 from contextlib import suppress

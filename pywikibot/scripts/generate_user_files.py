@@ -18,7 +18,7 @@
 from __future__ import annotations
 
 import os
-import re
+import regex as re
 import sys
 from collections.abc import Callable
 from pathlib import Path

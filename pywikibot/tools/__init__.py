@@ -11,7 +11,7 @@ import hashlib
 import importlib.metadata
 import ipaddress
 import os
-import re
+import regex as re
 import stat
 import subprocess
 import sys

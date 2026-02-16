@@ -110,7 +110,7 @@ Loads all wiki pages where dead links were found during a prior run:
 from __future__ import annotations
 
 import pickle
-import re
+import regex as re
 import threading
 import time
 import urllib.parse as urlparse

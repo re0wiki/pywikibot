@@ -22,7 +22,7 @@ Can be used with:
 #
 from __future__ import annotations
 
-import re
+import regex as re
 from concurrent.futures import as_completed
 from contextlib import suppress
 

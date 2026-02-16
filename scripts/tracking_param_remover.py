@@ -19,7 +19,7 @@ Furthermore, the following command line parameters are supported:
 #
 from __future__ import annotations
 
-import re
+import regex as re
 import urllib
 
 import mwparserfromhell

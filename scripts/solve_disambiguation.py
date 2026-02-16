@@ -79,7 +79,7 @@ To complete a move of a page, one can use:
 #
 from __future__ import annotations
 
-import re
+import regex as re
 from collections.abc import Generator
 from contextlib import suppress
 from itertools import chain

@@ -7,7 +7,7 @@
 """Tests for http module."""
 from __future__ import annotations
 
-import re
+import regex as re
 import unittest
 import warnings
 from contextlib import suppress

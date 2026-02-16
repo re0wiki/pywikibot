@@ -357,7 +357,7 @@ To run the script on all pages on a language, run it with option
 from __future__ import annotations
 
 import os
-import re
+import regex as re
 import sys
 from collections import Counter, defaultdict
 from collections.abc import Iterable

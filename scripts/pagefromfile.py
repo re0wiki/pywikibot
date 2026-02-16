@@ -78,7 +78,7 @@ between them by specifying '\n' as a value.
 from __future__ import annotations
 
 import os
-import re
+import regex as re
 from collections.abc import Generator
 from pathlib import Path
 

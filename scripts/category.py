@@ -162,7 +162,7 @@ from __future__ import annotations
 import math
 import os
 import pickle
-import re
+import regex as re
 from collections.abc import Sequence
 from contextlib import suppress
 from itertools import chain

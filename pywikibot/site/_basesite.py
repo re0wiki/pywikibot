@@ -8,7 +8,7 @@ from __future__ import annotations
 
 import functools
 import inspect
-import re
+import regex as re
 import threading
 from warnings import warn
 

@@ -7,7 +7,7 @@
 from __future__ import annotations
 
 import datetime
-import re
+import regex as re
 import time
 import webbrowser
 from collections import OrderedDict, defaultdict

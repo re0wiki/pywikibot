@@ -167,7 +167,7 @@ talk about HTTP, where the typo has become part of the standard:
 """
 from __future__ import annotations
 
-import re
+import regex as re
 from collections.abc import Generator, Sequence
 from contextlib import suppress
 from pathlib import Path

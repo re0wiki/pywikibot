@@ -50,7 +50,7 @@ Examples::
 #
 from __future__ import annotations
 
-import re
+import regex as re
 from itertools import chain
 from typing import NamedTuple
 

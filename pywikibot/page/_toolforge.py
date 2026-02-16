@@ -11,7 +11,7 @@ from __future__ import annotations
 
 import collections
 import pickle
-import re
+import regex as re
 import urllib.parse
 from http import HTTPStatus
 from pathlib import Path

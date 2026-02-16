@@ -30,7 +30,7 @@ Example:
 """
 from __future__ import annotations
 
-import re
+import regex as re
 import sys
 from collections import defaultdict
 from pathlib import Path
