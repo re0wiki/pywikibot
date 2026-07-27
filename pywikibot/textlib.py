@@ -1570,7 +1570,11 @@ def replaceLanguageLinks(oldtext: str,
                 s = separator + s
             newtext = (s2[:firstafter].replace(marker, '')
                        + s + s2[firstafter:])
-        elif site.has_extension('CategorySelect'):
+        elif (site.has_extension('CategorySelect')
+              # re0wiki: on template pages the noinclude-aware branch below
+              # must win; this branch would yank categories out of
+              # <noinclude> (getCategoryLinks ignores noinclude wrappers).
+              and not template and not template_subpage):
             cats = getCategoryLinks(s2, site=site)
             s2 = removeCategoryLinksAndSeparator(
                 s2.replace(marker, cseparatorstripped).strip(), site) \
