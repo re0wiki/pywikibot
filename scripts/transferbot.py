@@ -128,7 +128,6 @@ def main(*args: str) -> None:
         else:
             target_title = prefix + title
         targetpage = pywikibot.Page(tosite, target_title)
-        edithistpage = pywikibot.Page(tosite, target_title + '/edithistory')
 
         if targetpage.exists():
             if not overwrite:
@@ -154,13 +153,6 @@ def main(*args: str) -> None:
         pywikibot.log('Getting page text.')
         text = page.get(get_redirect=True)
         source_link = page.title(as_link=True, insite=targetpage.site)
-
-        note = twtranslate(
-            tosite, 'transferbot-target',
-            {'source': source_link,
-             'history': edithistpage.title(as_link=True,
-                                           insite=targetpage.site)}
-        )
 
         if page.namespace().id not in (8, 828):
             text = '{{Init}}\n{{To do}}\n' + text + f"\n{source_link}\n[[Category:新搬运待整理]]"
