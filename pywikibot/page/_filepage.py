@@ -16,7 +16,6 @@ from collections.abc import Iterable
 from http import HTTPStatus
 from os import PathLike
 from pathlib import Path
-from urllib.parse import urlparse
 
 import pywikibot
 from pywikibot.comms import http
@@ -416,7 +415,7 @@ class FilePage(Page):
             url = revision.url
 
         # Set format=original. Otherwise, the API will always return a webp file.
-        url += '&format=original'
+        url += ('&' if '?' in url else '?') + 'format=original'
 
         # adjust user path
         path = path.expanduser()
