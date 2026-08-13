@@ -850,7 +850,11 @@ def main(*args: str) -> None:
         else:
             genFactory.handle_arg(arg)
 
-    gen = genFactory.getCombinedGenerator(gen, preload=True)
+    gen = genFactory.getCombinedGenerator(gen)
+    # re0wiki fork: 预载带 pageprops——BaseBot.skip_page 对每页调 isDisambig()
+    # （use_disambigs=False），否则每页一次 prop=pageprops 查询（218 页的 124s
+    # 中 118s 在此）。groupsize=50：取内容的批量上限更低。
+    gen = pywikibot.Site().preloadpages(gen, groupsize=50, pageprops=True)
     if not gen:
         site = pywikibot.Site()
         cat = site.page_from_repository(maintenance_category)
