@@ -220,7 +220,8 @@ class ListPagesBot(AutomaticTWSummaryBot, SingleSiteBot):
                 f.write(page.text.encode(self.opt.encode))
             self.counter['save'] += 1
 
-        if self.opt.preloading is False and not self.opt.tofile:
+        if (self.opt.preloading is False and not self.opt.tofile
+                and not self.opt.notitle):
             pywikibot.stdout(self.output_list[-1]
                              if self.opt.put else self.output_list.pop())
 
