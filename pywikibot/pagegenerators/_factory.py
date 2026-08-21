@@ -788,6 +788,16 @@ class GeneratorFactory:
 
         firstpagelink = pywikibot.Link(value, self.site)
         self._allpages_args = self._allpages_args or {}
+        if 'start' in self._allpages_args:
+            # A previous -start was already given: materialize it as its
+            # own generator so that multiple -start options combine as a
+            # union (pre-11.3 behaviour), then start a fresh arg set.
+            apgen = self.site.allpages(**self._allpages_args)
+            if self.gens and self.gens[0] is None:
+                self.gens[0] = apgen
+            else:
+                self.gens.append(apgen)
+            self._allpages_args = {}
         self._allpages_args.update(
             start=firstpagelink.title,
             filterredir=False,
