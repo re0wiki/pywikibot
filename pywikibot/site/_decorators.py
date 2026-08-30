@@ -81,15 +81,23 @@ def need_right(right: str | None = None):
                     raise UserRightsError(CLOSED_WIKI_MSG.format(site=self))
 
             elif right is not None and not self.has_right(right):
-                if os.environ.get('PYWIKIBOT_TEST_RUNNING', '0') == '1':
-                    rights = ' but:\n' + fill(
-                        str(sorted(self.userinfo['rights'])),
-                        width=76, break_on_hyphens=False)
-                else:
-                    rights = '.'
-                raise UserRightsError(
-                    f'User "{self.user()}" does not have required user right '
-                    f'"{right}" on site {self}{rights}')
+                if self.user() is None and self.username():
+                    # re0wiki patch: the cached userinfo may show an
+                    # anonymous session that was invalidated server-side
+                    # (Fandom cross-wiki session kick). The userinfo-mismatch
+                    # self-heal in api._requests only triggers while user()
+                    # is not None, so try one re-login here before giving up.
+                    self._relogin()
+                if not self.has_right(right):
+                    if os.environ.get('PYWIKIBOT_TEST_RUNNING', '0') == '1':
+                        rights = ' but:\n' + fill(
+                            str(sorted(self.userinfo['rights'])),
+                            width=76, break_on_hyphens=False)
+                    else:
+                        rights = '.'
+                    raise UserRightsError(
+                        f'User "{self.user()}" does not have required user '
+                        f'right "{right}" on site {self}{rights}')
             return fn(self, *args, **kwargs)
 
         manage_wrapping(callee, fn)
