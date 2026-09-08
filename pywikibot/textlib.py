@@ -9,6 +9,7 @@ from __future__ import annotations
 import itertools
 import re
 import sys
+from bisect import bisect_right
 from collections import OrderedDict
 from collections.abc import Callable, Container, Iterable, Mapping, Sequence
 from contextlib import closing, suppress
@@ -417,6 +418,53 @@ def replaceExcept(text: str,
         return text + marker
 
     dontTouchRegexes = get_regexes(exceptions, site)
+
+    # [fork] 快速路径：异常区间预计算一次（合并排序），编辑后区间随 delta 平移，
+    # 避免原版「每个候选匹配 × 每个异常正则」的全文重扫（NekoQuote 月表这类
+    # 保护行密集的 200KB 页面上从 O(matches × 扫描) 降到 O(扫描 + matches × log n)）。
+    # 前提：marker 为空且不 allowoverlap（replace.py 实际调用路径即如此）；
+    # 替换不会改写受保护内容本身（落在区间内的匹配都被跳过）。
+    if not marker and not allowoverlap:
+        spans: list[list[int]] = []
+        for dontTouchR in dontTouchRegexes:
+            spans += [[m.start(), m.end()] for m in dontTouchR.finditer(text)]
+        spans.sort()
+        merged: list[list[int]] = []
+        for s, e in spans:
+            if merged and s <= merged[-1][1]:
+                merged[-1][1] = max(merged[-1][1], e)
+            else:
+                merged.append([s, e])
+        starts = [s for s, _ in merged]
+        index = 0
+        replaced = 0
+        while not count or replaced < count:
+            if index > len(text):
+                break
+            match = old.search(text, index)
+            if not match:
+                break
+            i = bisect_right(starts, match.start()) - 1
+            if i >= 0 and match.start() < merged[i][1]:
+                index = merged[i][1]
+                continue
+            if callable(new):
+                replacement = new(match)
+            else:
+                replacement = match.expand(new.replace('\\n', '\n'))
+            text = text[:match.start()] + replacement + text[match.end():]
+            delta = len(replacement) - (match.end() - match.start())
+            if delta:
+                for sp in merged[i + 1:]:
+                    sp[0] += delta
+                    sp[1] += delta
+                starts = [s for s, _ in merged]
+            index = match.start() + len(replacement)
+            if not match.group():
+                # When the regex allows to match nothing, shift by one char
+                index += 1
+            replaced += 1
+        return text
 
     index = 0
     replaced = 0
