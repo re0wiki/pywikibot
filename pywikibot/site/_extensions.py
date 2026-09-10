@@ -6,7 +6,7 @@
 """Objects representing API interface to MediaWiki site extensions."""
 from __future__ import annotations
 
-import re
+import regex as re
 from collections.abc import Generator, Iterable
 from ipaddress import ip_network
 from typing import TYPE_CHECKING, Any, Protocol

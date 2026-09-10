@@ -7,7 +7,7 @@
 """Tests for the replace script and ReplaceRobot class."""
 from __future__ import annotations
 
-import re
+import regex as re
 import unittest
 from contextlib import suppress
 from unittest.mock import MagicMock, call, patch

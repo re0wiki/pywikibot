@@ -68,7 +68,7 @@ Furthermore, the following can be used to specify which pages to process...
 """
 from __future__ import annotations
 
-import re
+import regex as re
 from collections.abc import Sequence
 from pathlib import Path
 

@@ -7,7 +7,7 @@
 """Test Link functionality."""
 from __future__ import annotations
 
-import re
+import regex as re
 from contextlib import suppress
 
 import pywikibot

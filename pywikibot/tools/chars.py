@@ -6,7 +6,7 @@
 """Character based helper functions (not wiki-dependent)."""
 from __future__ import annotations
 
-import re
+import regex as re
 from collections.abc import Iterable
 from contextlib import suppress
 from typing import cast

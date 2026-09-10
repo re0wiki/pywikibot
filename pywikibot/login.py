@@ -8,7 +8,7 @@ from __future__ import annotations
 
 import datetime
 import os
-import re
+import regex as re
 import webbrowser
 from ast import literal_eval
 from enum import IntEnum

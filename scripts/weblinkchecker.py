@@ -110,7 +110,7 @@ The following config variables are supported:
 from __future__ import annotations
 
 import pickle
-import re
+import regex as re
 import threading
 import time
 import urllib.parse as urlparse

@@ -12,7 +12,7 @@ from __future__ import annotations
 
 import inspect
 import os
-import re
+import regex as re
 import sys
 import time
 import types

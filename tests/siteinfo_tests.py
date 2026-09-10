@@ -7,7 +7,7 @@
 """Tests for the site module."""
 from __future__ import annotations
 
-import re
+import regex as re
 import unittest
 from contextlib import suppress
 from datetime import datetime

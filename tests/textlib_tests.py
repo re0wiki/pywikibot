@@ -8,7 +8,7 @@
 from __future__ import annotations
 
 import functools
-import re
+import regex as re
 import unittest
 from collections import OrderedDict
 from contextlib import nullcontext, suppress

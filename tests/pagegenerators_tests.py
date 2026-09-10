@@ -8,7 +8,7 @@ from __future__ import annotations
 
 import calendar
 import datetime
-import re
+import regex as re
 import sys
 import unittest
 from collections import Counter

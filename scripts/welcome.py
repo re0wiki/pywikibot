@@ -180,7 +180,7 @@ from __future__ import annotations
 
 import locale
 import pickle
-import re
+import regex as re
 import time
 from collections.abc import Generator
 from contextlib import suppress

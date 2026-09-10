@@ -8,7 +8,7 @@ from __future__ import annotations
 
 import calendar
 import datetime
-import re
+import regex as re
 from collections import abc, defaultdict
 from collections.abc import Callable, Iterator, Mapping, Sequence
 from contextlib import suppress

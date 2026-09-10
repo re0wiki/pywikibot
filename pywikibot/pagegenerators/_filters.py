@@ -7,7 +7,7 @@
 from __future__ import annotations
 
 import datetime
-import re
+import regex as re
 from collections.abc import Generator, Iterable, Sequence
 from functools import partial
 from typing import TYPE_CHECKING, NamedTuple

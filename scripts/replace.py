@@ -165,7 +165,7 @@ Furthermore, the following command line parameters are supported:
 """
 from __future__ import annotations
 
-import re
+import regex as re
 from collections.abc import Generator, Sequence
 from contextlib import suppress
 from dataclasses import dataclass

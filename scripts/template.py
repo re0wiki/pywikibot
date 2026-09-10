@@ -107,7 +107,7 @@ other:       First argument is the old template name, second one is the
 """
 from __future__ import annotations
 
-import re
+import regex as re
 
 import pywikibot
 from pywikibot import i18n, pagegenerators, textlib

@@ -53,7 +53,7 @@ from __future__ import annotations
 
 import http.client as httplib
 import itertools
-import re
+import regex as re
 import subprocess
 from contextlib import suppress
 from enum import IntEnum

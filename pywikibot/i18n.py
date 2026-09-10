@@ -24,7 +24,7 @@ from __future__ import annotations
 import json
 import os
 import pkgutil
-import re
+import regex as re
 from collections.abc import Generator, Iterable, Mapping, Sequence
 from contextlib import suppress
 from functools import cache

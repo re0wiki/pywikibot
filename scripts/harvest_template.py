@@ -114,7 +114,7 @@ argument as both local and global, the local argument overrides the global one
 """
 from __future__ import annotations
 
-import re
+import regex as re
 import signal
 import sys
 from collections.abc import Generator
