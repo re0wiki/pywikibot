@@ -657,7 +657,16 @@ class ReplaceRobot(SingleSiteBot, ExistingPageBot):
             if replacement.edit_summary:
                 summary_messages.add(replacement.edit_summary)
             elif replacement.default_summary:
-                default_summaries.add((replacement.old, replacement.new))
+                # [fork] callable 替换可实现 take_summary_pairs() 协议：
+                # 返回本页实际命中的 (原文, 目标) 对并清空——合并 alternation
+                # 的摘要打印真实转换（-菲爾歐蕾 +菲尔欧蕾）而非整条 pattern。
+                if callable(replacement.new) and hasattr(
+                    replacement.new, 'take_summary_pairs'
+                ):
+                    default_summaries.update(
+                        replacement.new.take_summary_pairs())
+                else:
+                    default_summaries.add((replacement.old, replacement.new))
 
         summary_messages = sorted(summary_messages)
         if default_summaries:
