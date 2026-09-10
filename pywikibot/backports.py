@@ -14,7 +14,7 @@
 """
 from __future__ import annotations
 
-import re
+import regex as re
 import sys
 from typing import TYPE_CHECKING, Any, Union
 

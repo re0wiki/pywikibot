@@ -6,7 +6,7 @@
 """User interface for Unix terminals."""
 from __future__ import annotations
 
-import re
+import regex as re
 
 from pywikibot.userinterfaces import terminal_interface_base
 

@@ -6,7 +6,7 @@
 """Options and Choices for :py:meth:`pywikibot.input_choice`."""
 from __future__ import annotations
 
-import re
+import regex as re
 from abc import ABC, abstractmethod
 from collections.abc import Iterable, Mapping, Sequence
 from textwrap import fill

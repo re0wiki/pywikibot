@@ -8,7 +8,7 @@
 from __future__ import annotations
 
 import json
-import re
+import regex as re
 import unittest
 from contextlib import suppress
 from unittest import mock

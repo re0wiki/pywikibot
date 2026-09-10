@@ -8,7 +8,7 @@ from __future__ import annotations
 
 import calendar
 import io
-import re
+import regex as re
 import typing
 from collections import abc
 from collections.abc import Callable, Generator, Iterable, Iterator, Sequence

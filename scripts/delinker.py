@@ -44,7 +44,7 @@ from __future__ import annotations
 
 import configparser
 import heapq
-import re
+import regex as re
 from difflib import get_close_matches
 
 import pywikibot

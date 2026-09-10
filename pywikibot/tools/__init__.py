@@ -12,7 +12,7 @@ import importlib.metadata
 import io
 import ipaddress
 import os
-import re
+import regex as re
 import shutil
 import stat
 import subprocess

@@ -8,7 +8,7 @@ from __future__ import annotations
 
 import copy
 import datetime
-import re
+import regex as re
 from collections.abc import Container
 from contextlib import suppress
 from typing import TYPE_CHECKING, Any, Literal, cast

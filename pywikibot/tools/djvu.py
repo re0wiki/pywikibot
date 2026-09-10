@@ -7,7 +7,7 @@
 from __future__ import annotations
 
 import os
-import re
+import regex as re
 import subprocess
 from collections import Counter
 from collections.abc import Sequence

@@ -8,7 +8,7 @@ from __future__ import annotations
 
 import getpass
 import logging
-import re
+import regex as re
 import sys
 import threading
 from collections.abc import Iterable, Sequence

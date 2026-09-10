@@ -8,7 +8,7 @@ from __future__ import annotations
 
 import atexit
 import datetime
-import re
+import regex as re
 import sys
 import threading
 import warnings

@@ -7,7 +7,7 @@
 from __future__ import annotations
 
 import json
-import re
+import regex as re
 from contextlib import suppress
 from html.parser import HTMLParser
 from http import HTTPStatus

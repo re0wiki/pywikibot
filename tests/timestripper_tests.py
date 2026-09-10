@@ -8,7 +8,7 @@
 from __future__ import annotations
 
 import datetime
-import re
+import regex as re
 import unittest
 from contextlib import suppress
 

@@ -7,7 +7,7 @@
 """Test generate_user_files script."""
 from __future__ import annotations
 
-import re
+import regex as re
 import unittest
 from contextlib import suppress
 
