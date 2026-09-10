@@ -62,3 +62,6 @@ memento_client==0.6.1
 
 # optional but also needed for tests
 fake-useragent >= 2.2.0
+
+# regex
+regex
